@@ -21,7 +21,7 @@
 
 .person-card{align-items:flex-start}.person-card>div{min-width:0}.person-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.person-actions a{display:inline-flex;align-items:center;justify-content:center;padding:6px 11px;border-radius:7px;border:1px solid rgba(232,169,54,.65);color:#ffd27a;font-size:12px;font-weight:700;transition:background .2s,transform .2s}.person-actions a:hover{background:rgba(232,169,54,.16);transform:translateY(-1px)}.contact-person-label{margin:12px 0 3px;color:#f3c46b;font-size:11px;font-weight:700;line-height:1.35}.contact-panel{width:290px;max-height:min(76vh,650px);overflow-y:auto}.contact-panel .contact-option{margin-top:6px;height:38px;font-size:11px}.contact-panel-head{position:sticky;top:-12px;padding:2px 0 7px;background:rgba(13,17,22,.98);z-index:1}.contact-location{grid-column:auto}.contact-intro .contact-location{margin-top:18px}
 @media(max-width:720px){.contact-content{grid-template-columns:1fr}.contact-cards{grid-template-columns:1fr}.contact-panel{width:min(290px,calc(100vw - 26px));max-height:72vh}}
-.hero-slides{overflow:hidden}.hero-slide{pointer-events:none}.hero-slide.active{pointer-events:auto}@media(prefers-reduced-motion:reduce){.hero-slide{transition:none!important}.hero-content.slide-enter{animation:none!important}.reveal,.reveal-item{opacity:1;transform:none;transition:none}}
+.hero-slides{overflow:hidden;pointer-events:none}.hero-slide{pointer-events:none}.hero-slide.active{pointer-events:none}@media(prefers-reduced-motion:reduce){.hero-slide{transition:none!important}.hero-content.slide-enter{animation:none!important}.reveal,.reveal-item{opacity:1;transform:none;transition:none}}
 
 /* Mobile gallery expansion fix */
 .gallery-shell.expanded .gallery-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;overflow:visible;overflow-x:visible;padding:0}
@@ -37,11 +37,74 @@
 /* Gallery photo lightbox - desktop and mobile */
 .gallery-item{cursor:zoom-in;touch-action:manipulation}
 .gallery-item:after,.gallery-item span{pointer-events:none}
-.photo-lightbox{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.94);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease;overscroll-behavior:contain;touch-action:manipulation}
-.photo-lightbox.open{opacity:1;visibility:visible;pointer-events:auto}
+.photo-lightbox{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.94);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease;overscroll-behavior:contain;touch-action:manipulation}
+.photo-lightbox.open{display:flex;opacity:1;visibility:visible;pointer-events:auto}
 .photo-lightbox img{display:block;max-width:94vw;max-height:88vh;max-height:88dvh;width:auto;height:auto;object-fit:contain;border:2px solid rgba(232,169,54,.85);border-radius:10px;box-shadow:0 18px 65px #000b;pointer-events:none;user-select:none;-webkit-user-drag:none}
 .photo-lightbox-close{position:absolute;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));z-index:2;width:48px;height:48px;border:1px solid #e8a936;border-radius:50%;background:#171d24;color:#fff;font-size:30px;line-height:1;cursor:pointer;touch-action:manipulation}
 @media(max-width:720px){.photo-lightbox{padding:12px}.photo-lightbox img{max-width:96vw;max-height:82vh;max-height:82dvh}.photo-lightbox-close{width:46px;height:46px;top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right))}}
+
+/* Mobile tap and gallery hit-area fix */
+@media(max-width:800px){
+  .hero-slides,.hero-slide,.hero-slide:after{pointer-events:none!important}
+  .topbar,.nav,.nav-links,.nav-links a,.brand,.actions,.actions a,.gallery-heading,.gallery-shell,.gallery-track,.gallery-item,.gallery-more-wrap,.gallery-more,.gallery-arrow,.contact-card,.person-actions a,.footer-nav a{pointer-events:auto}
+  .gallery-shell{position:relative;isolation:isolate}
+  .gallery-track{position:relative;z-index:1;touch-action:pan-x pan-y}
+  .gallery-item{position:relative;z-index:2;cursor:pointer;touch-action:manipulation}
+  .gallery-item img,.gallery-item:after,.gallery-item span{pointer-events:none}
+  .gallery-arrow,.gallery-more,.nav-links a,.actions a,.person-actions a,.contact-card{touch-action:manipulation}
+}
+.gallery-item{position:relative;isolation:isolate;pointer-events:auto}
+.gallery-item img,.gallery-item:after,.gallery-item span{pointer-events:none}
+
+
+/* Final right-edge gallery hit-area correction */
+.gallery-shell{padding-left:0;padding-right:0}
+.gallery-track{position:relative;z-index:3}
+.gallery-item{position:relative;z-index:4;pointer-events:auto}
+.gallery-arrow{z-index:6}
+.gallery-item:after,.gallery-item span,.gallery-item img{pointer-events:none}
+@media(max-width:720px){.gallery-track{z-index:4}.gallery-item{z-index:5}.gallery-arrow{z-index:7}}
+
+
+/* Global click-area safeguard */
+#photo-lightbox:not(.open){display:none!important;pointer-events:none!important}
+.hero-slides,.hero-slide,.hero-slide:after{pointer-events:none!important}
+main,main section,.container,.intro-grid,.contact-content{pointer-events:auto}
+a,button,iframe{pointer-events:auto}
+
+
+/* Telefon ve WhatsApp butonlarında doğal hover vurgusu */
+.person-actions a:hover,
+.person-actions a:focus-visible {
+  background: rgba(232,169,54,.16);
+  border-color: var(--gold2);
+  color: #ffe0a0;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,.22);
+}
+
+
+
+/* Engelleyici katman olsa bile alttaki gerçek bağlantının hover görünümünü göster */
+.nav-links a.hover-proxy,.footer-nav a.hover-proxy{color:var(--gold2)}
+.person-actions a.hover-proxy{background:rgba(232,169,54,.16);border-color:var(--gold2);color:#ffe0a0;transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.22)}
+.contact-option.hover-proxy{filter:brightness(1.18)}
+.contact-card.hover-proxy{transform:translateY(-4px);border-color:var(--gold);background:#252d36;box-shadow:0 14px 30px #0005}
+.btn.hover-proxy{transform:translateY(-2px);filter:brightness(1.08)}
+.gallery-item.hover-proxy{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 14px 30px #0005}
+.gallery-item.hover-proxy img{transform:scale(1.075);filter:saturate(1.08)}
+.all-link.hover-proxy,.gallery-more.hover-proxy{background:rgba(230,169,54,.18);color:#ffe0a0}
+.gallery-arrow.hover-proxy,.hero-arrow.hover-proxy{background:var(--gold);border-color:var(--gold);color:#141414}
+.contact-launcher.hover-proxy{transform:scale(1.05)}
+
+/* Yalnızca en alttaki Medeni Bülbül iletişim kartının arka plan hover efekti */
+.medeni-main-card.hover-active {
+  background: #303944 !important;
+  border-color: var(--gold) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px #0004;
+}
+
 </style>
 </head>
 <body>
@@ -55,7 +118,7 @@
 <section class="gallery-section" id="calismalar-galeri"><div class="container"><div class="gallery-heading"><h2><span>▧</span> Yaptığımız İşlerden Bazıları</h2><span class="all-link">Özel Üretim • Lazer Kesim • Ferforje</span></div><div class="gallery-shell" id="gallery-shell"><button class="gallery-arrow prev" id="gallery-prev" aria-label="Önceki fotoğraflar">‹</button><div class="gallery-track" id="gallery-track">
 <div class="gallery-item"><img src="images/urun-11.jpg" alt="Lazer kesim bahçe kapısı"><span>Lazer kesim kapı</span></div><div class="gallery-item"><img src="images/urun-14.jpg" alt="Desenli lazer kesim kapı duvar"><span>Lazer kesim duvar</span></div><div class="gallery-item"><img src="images/urun-15.jpg" alt="Metal bahçe giriş kapısı"><span>Bahçe kapısı</span></div><div class="gallery-item"><img src="images/urun-16.jpg" alt="Bahçe kapısı ve korkuluk"><span>Kapı ve korkuluk</span></div><div class="gallery-item"><img src="images/urun-01.jpg" alt="Dekoratif ferforje kapı"><span>Ferforje uygulama</span></div><div class="gallery-item"><img src="images/urun-04.jpg" alt="Çift kanat metal kapı"><span>Özel tasarım kapı</span></div><div class="gallery-item"><img src="images/urun-08.jpg" alt="Metal bahçe kapısı"><span>Metal kapı</span></div><div class="gallery-item"><img src="images/urun-09.jpg" alt="Demir korkuluk detayı"><span>Korkuluk işçiliği</span></div><div class="gallery-item"><img src="images/urun-10.jpg" alt="Bahçe duvarı metal korkuluk"><span>Duvar üstü korkuluk</span></div><div class="gallery-item"><img src="images/urun-02.jpg" alt="Metal panjur"><span>Metal panjur</span></div><div class="gallery-item"><img src="images/urun-03.jpg" alt="Panjur detayı"><span>Panjur detayı</span></div><div class="gallery-item"><img src="images/urun-05.jpg" alt="Dış cephe korkuluk"><span>Dış cephe uygulama</span></div><div class="gallery-item"><img src="images/urun-06.jpg" alt="Pencere korkuluğu"><span>Pencere korkuluğu</span></div><div class="gallery-item"><img src="images/urun-07.jpg" alt="Korkuluk montajı"><span>Montaj çalışması</span></div><div class="gallery-item"><img src="images/urun-12.jpg" alt="Bahçe çevreleme"><span>Bahçe çevreleme</span></div>
 </div><button class="gallery-arrow next" id="gallery-next" aria-label="Sonraki fotoğraflar">›</button><div class="gallery-more-wrap"><button class="gallery-more" id="gallery-more" aria-expanded="false">Tüm Fotoğrafları Gör　＋</button></div></div></div></section>
-<section class="contact-section" id="iletisim"><div class="container contact-content"><div class="contact-intro"><span class="eyebrow">BİZE ULAŞIN</span><h2>Projenizi birlikte hayata geçirelim.</h2><p>Ölçü, model ve uygulama hakkında bilgi almak için doğrudan ustalarımızla iletişime geçebilirsiniz.</p><div class="contact-location">⌖　Bilecik / Merkez</div><div class="contact-map"><iframe title="Bilecik Merkez haritası" src="https://www.google.com/maps?q=Bilecik%20Merkez&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div><div class="contact-cards"><div class="contact-card person-card"><span>☎</span><div><strong>Ercan Öztürkler</strong><small>+90 535 389 74 41</small><div class="person-actions"><a href="tel:+905353897441">Telefonla Ara</a><a href="https://wa.me/905353897441" target="_blank" rel="noopener">WhatsApp</a></div></div></div><div class="contact-card person-card"><span>☎</span><div><strong>Medeni Bülbül</strong><small>+90 543 597 87 83</small><div class="person-actions"><a href="tel:+905435978783">Telefonla Ara</a><a href="https://wa.me/905435978783" target="_blank" rel="noopener">WhatsApp</a></div></div></div><div class="contact-card person-card"><span>☎</span><div><strong>Medeni Bülbül – 2. Numara</strong><small>+90 532 404 70 65</small><div class="person-actions"><a href="tel:+905324047065">Telefonla Ara</a><a href="https://wa.me/905324047065" target="_blank" rel="noopener">WhatsApp</a></div></div></div><a class="contact-card" href="mailto:medeniblbl@gmail.com"><span>✉</span><div><strong>E-posta</strong><small>medeniblbl@gmail.com</small></div><b>↗</b></a><a class="contact-card" href="https://www.instagram.com/bulbulmedeni/" target="_blank" rel="noopener"><span>◎</span><div><strong>Instagram</strong><small>@bulbulmedeni</small></div><b>↗</b></a></div></div></section>
+<section class="contact-section" id="iletisim"><div class="container contact-content"><div class="contact-intro"><span class="eyebrow">BİZE ULAŞIN</span><h2>Projenizi birlikte hayata geçirelim.</h2><p>Ölçü, model ve uygulama hakkında bilgi almak için doğrudan ustalarımızla iletişime geçebilirsiniz.</p><div class="contact-location">⌖　Bilecik / Merkez</div><div class="contact-map"><iframe title="Bilecik Merkez haritası" src="https://www.google.com/maps?q=Bilecik%20Merkez&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div><div class="contact-cards"><div class="contact-card person-card"><span>☎</span><div><strong>Ercan Öztürkler</strong><small>+90 535 389 74 41</small><div class="person-actions"><a href="tel:+905353897441">Telefonla Ara</a><a href="https://wa.me/905353897441" target="_blank" rel="noopener">WhatsApp</a></div></div></div><div class="contact-card person-card medeni-main-card"><span>☎</span><div><strong>Medeni Bülbül</strong><small>+90 543 597 87 83</small><div class="person-actions"><a href="tel:+905435978783">Telefonla Ara</a><a href="https://wa.me/905435978783" target="_blank" rel="noopener">WhatsApp</a></div></div></div><div class="contact-card person-card"><span>☎</span><div><strong>Medeni Bülbül – 2. Numara</strong><small>+90 532 404 70 65</small><div class="person-actions"><a href="tel:+905324047065">Telefonla Ara</a><a href="https://wa.me/905324047065" target="_blank" rel="noopener">WhatsApp</a></div></div></div><a class="contact-card" href="mailto:medeniblbl@gmail.com"><span>✉</span><div><strong>E-posta</strong><small>medeniblbl@gmail.com</small></div><b>↗</b></a><a class="contact-card" href="https://www.instagram.com/bulbulmedeni/" target="_blank" rel="noopener"><span>◎</span><div><strong>Instagram</strong><small>@bulbulmedeni</small></div><b>↗</b></a></div></div></section>
 </main>
 <footer class="footer"><div class="container footer-inner"><img class="footer-logo" src="images/gunes-metal-logo-seffaf.png" alt="Güneş Metal"><nav class="footer-nav"><a href="#anasayfa">Ana Sayfa</a><a href="#hakkimizda">Hakkımızda</a><a href="#calismalar">Çalışmalarımız</a><a href="#iletisim">İletişim</a></nav><div class="location"><b>⌖</b> Bilecik / Merkez</div></div></footer>
 <div class="floating-contact" id="floating-contact"><div class="contact-panel" id="contact-panel"><div class="contact-panel-head">İletişime Geç <button class="contact-close" id="contact-close" aria-label="Kapat">×</button></div><div class="contact-person-label">Ercan Öztürkler · +90 535 389 74 41</div><a class="contact-option whatsapp" href="https://wa.me/905353897441" target="_blank" rel="noopener"><span class="symbol">◉</span> Ercan ile WhatsApp　›</a><a class="contact-option" href="tel:+905353897441"><span class="symbol">☎</span> Ercan'ı Ara　›</a><div class="contact-person-label">Medeni Bülbül · +90 543 597 87 83</div><a class="contact-option whatsapp" href="https://wa.me/905435978783" target="_blank" rel="noopener"><span class="symbol">◉</span> Medeni ile WhatsApp　›</a><a class="contact-option" href="tel:+905435978783"><span class="symbol">☎</span> Medeni'yi Ara　›</a><div class="contact-person-label">Medeni Bülbül – 2. Numara · +90 532 404 70 65</div><a class="contact-option whatsapp" href="https://wa.me/905324047065" target="_blank" rel="noopener"><span class="symbol">◉</span> İkinci numaraya WhatsApp　›</a><a class="contact-option" href="tel:+905324047065"><span class="symbol">☎</span> İkinci Numarayı Ara　›</a><a class="contact-option" href="mailto:medeniblbl@gmail.com"><span class="symbol">✉</span> medeniblbl@gmail.com　›</a><a class="contact-option instagram" href="https://www.instagram.com/bulbulmedeni/" target="_blank" rel="noopener"><span class="symbol">◎</span> Instagram: @bulbulmedeni　›</a></div><button class="contact-launcher" id="contact-launcher" aria-label="İletişim seçeneklerini aç" aria-expanded="false">☏</button></div>
@@ -67,7 +130,43 @@
 
 <script>
 
-const lightbox=document.getElementById('photo-lightbox'),lightboxImage=document.getElementById('photo-lightbox-image'),galleryTrack=document.getElementById('gallery-track');let previousBodyOverflow='';function openLightbox(img){if(!img)return;lightboxImage.src=img.currentSrc||img.src;lightboxImage.alt=img.alt||'Büyütülmüş ürün fotoğrafı';previousBodyOverflow=document.body.style.overflow;lightbox.classList.add('open');document.body.style.overflow='hidden'}function closeLightbox(){lightbox.classList.remove('open');document.body.style.overflow=previousBodyOverflow}galleryTrack.addEventListener('click',e=>{const item=e.target.closest('.gallery-item');if(item){const img=item.querySelector('img');if(img){e.preventDefault();openLightbox(img)}}});galleryTrack.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('.gallery-item')){e.preventDefault();openLightbox(e.target.closest('.gallery-item').querySelector('img'))}});document.getElementById('photo-lightbox-close').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();closeLightbox()});lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lightbox.classList.contains('open'))closeLightbox()});
+// Sadece Medeni Bülbül kartının arka plan hover durumunu düzelt.
+let medeniHoverCard=null;
+document.addEventListener('pointermove',e=>{
+  const card=document.elementsFromPoint(e.clientX,e.clientY).map(el=>el.closest?.('.medeni-main-card')).find(Boolean);
+  if(medeniHoverCard!==card){
+    if(medeniHoverCard)medeniHoverCard.classList.remove('hover-active');
+    medeniHoverCard=card||null;
+    if(medeniHoverCard)medeniHoverCard.classList.add('hover-active');
+  }
+},true);
+document.addEventListener('pointerleave',()=>{
+  if(medeniHoverCard)medeniHoverCard.classList.remove('hover-active');
+  medeniHoverCard=null;
+},true);
+
+
+
+
+// Üstteki görünmez katmanın örttüğü gerçek bağlantı için hover efektini göster.
+let hoverProxyTarget=null;
+document.addEventListener('pointermove',e=>{
+  const actionable='a,button,[role=button]';
+  const target=document.elementsFromPoint(e.clientX,e.clientY).map(el=>el.closest?.(actionable)).find(el=>el&&!el.disabled);
+  if(hoverProxyTarget!==target){
+    if(hoverProxyTarget)hoverProxyTarget.classList.remove('hover-proxy');
+    hoverProxyTarget=target||null;
+    if(hoverProxyTarget)hoverProxyTarget.classList.add('hover-proxy');
+  }
+},true);
+document.addEventListener('pointerleave',()=>{
+  if(hoverProxyTarget)hoverProxyTarget.classList.remove('hover-proxy');
+  hoverProxyTarget=null;
+},true);
+
+// Route clicks through any invisible layer covering a link or button.
+let forwardingClick=false;document.addEventListener('click',e=>{if(forwardingClick)return;const actionable='a,button,[role=button],input,select,textarea';if(e.target.closest?.(actionable))return;const stack=document.elementsFromPoint(e.clientX,e.clientY);const target=stack.map(el=>el.closest?.(actionable)).find(el=>el&&!el.disabled&&el!==e.target);if(!target)return;e.preventDefault();e.stopImmediatePropagation();forwardingClick=true;target.click();forwardingClick=false},true);
+const lightbox=document.getElementById('photo-lightbox'),lightboxImage=document.getElementById('photo-lightbox-image'),galleryTrack=document.getElementById('gallery-track');let previousBodyOverflow='';function openLightbox(img){if(!img)return;lightboxImage.src=img.currentSrc||img.src;lightboxImage.alt=img.alt||'Büyütülmüş ürün fotoğrafı';previousBodyOverflow=document.body.style.overflow;lightbox.classList.add('open');document.body.style.overflow='hidden'}function closeLightbox(){lightbox.classList.remove('open');document.body.style.overflow=previousBodyOverflow}galleryTrack.querySelectorAll('.gallery-item').forEach(item=>{item.setAttribute('role','button');item.setAttribute('tabindex','0');item.setAttribute('aria-label','Fotoğrafı büyüt')});let lastGalleryOpen=0;function handleGalleryPhoto(e){const item=e.target.closest?.('.gallery-item');if(!item||!galleryTrack.contains(item))return;if(e.type==='pointerdown'&&e.pointerType==='mouse'&&e.button!==0)return;if(e.type==='touchstart')return;if(e.type==='click'&&Date.now()-lastGalleryOpen<450)return;e.preventDefault();e.stopPropagation();lastGalleryOpen=Date.now();openLightbox(item.querySelector('img'))}galleryTrack.addEventListener('click',handleGalleryPhoto,true);galleryTrack.addEventListener('pointerup',e=>{if(e.pointerType==='touch')handleGalleryPhoto(e)},true);galleryTrack.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('.gallery-item')){e.preventDefault();openLightbox(e.target.closest('.gallery-item').querySelector('img'))}});document.getElementById('photo-lightbox-close').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();closeLightbox()});lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lightbox.classList.contains('open'))closeLightbox()});
 
 const slides=[...document.querySelectorAll('.hero-slide')],dotsBox=document.getElementById('hero-dots'),heroContent=document.querySelector('.hero-content');let current=0,timer;slides.forEach((_,i)=>{const b=document.createElement('button');b.className='hero-dot'+(i===0?' active':'');b.setAttribute('aria-label',(i+1)+'. fotoğraf');b.addEventListener('click',()=>showSlide(i,true));dotsBox.appendChild(b)});const dots=[...dotsBox.children];function showSlide(i,restart=false){const next=(i+slides.length)%slides.length;if(next===current)return;slides.forEach((slide,n)=>{slide.classList.toggle('active',n===next);slide.classList.toggle('before',n===current)});current=next;dots.forEach((dot,n)=>dot.classList.toggle('active',n===current));heroContent.classList.remove('slide-enter');void heroContent.offsetWidth;heroContent.classList.add('slide-enter');if(restart)startTimer()}function startTimer(){clearInterval(timer);timer=setInterval(()=>showSlide(current+1),3500)}slides.forEach((slide,n)=>{slide.classList.remove('active','before');if(n===0)slide.classList.add('active')});startTimer();const hero=document.querySelector('.hero');hero.addEventListener('mouseenter',()=>clearInterval(timer));hero.addEventListener('mouseleave',startTimer);document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(timer);else startTimer()});
 const track=document.getElementById('gallery-track');document.getElementById('gallery-prev').addEventListener('click',()=>track.scrollBy({left:-track.clientWidth*.82,behavior:'smooth'}));document.getElementById('gallery-next').addEventListener('click',()=>track.scrollBy({left:track.clientWidth*.82,behavior:'smooth'}));const shell=document.getElementById('gallery-shell'),more=document.getElementById('gallery-more');more.addEventListener('click',()=>{const expanded=shell.classList.toggle('expanded');more.setAttribute('aria-expanded',String(expanded));more.textContent=expanded?'Daha Az Göster　−':'Tüm Fotoğrafları Gör　＋';document.getElementById('gallery-prev').hidden=expanded;document.getElementById('gallery-next').hidden=expanded;if(expanded){track.scrollLeft=0;track.querySelectorAll('.gallery-item').forEach(item=>{item.classList.add('visible');item.style.opacity='1';item.style.transform='none';item.style.visibility='visible'})}});
