@@ -102,6 +102,48 @@
       .contact-options { width:min(265px,calc(100vw - 28px)); }
       .contact-launcher { min-height:50px; padding:0 16px; }
     }
+  
+    /* Güncel fotoğraf animasyonları ve galeri düzeni */
+    .hero { isolation:isolate; overflow:hidden; background:#090b0c; }
+    .hero-slides { position:absolute; inset:0; z-index:0; overflow:hidden; }
+    .hero-slide { position:absolute; inset:0; background-position:center 45%; background-size:cover; opacity:0; transform:scale(1.10); transition:opacity 1.15s ease,transform 5.2s ease; }
+    .hero-slide.active { opacity:1; transform:scale(1); }
+    .hero-slide::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(7,9,10,.91),rgba(7,9,10,.67) 55%,rgba(7,9,10,.25)),linear-gradient(0deg,rgba(7,9,10,.58),transparent 60%); }
+    .hero-content { z-index:2; }
+    .hero:after { z-index:1; pointer-events:none; }
+    .hero-dots { position:absolute; z-index:3; left:50%; bottom:42px; transform:translateX(-50%); display:flex; gap:6px; max-width:calc(100% - 36px); overflow:hidden; }
+    .hero-dot { flex:0 0 7px; width:7px; height:7px; padding:0; border:0; border-radius:8px; background:rgba(255,255,255,.48); cursor:pointer; transition:all .3s ease; }
+    .hero-dot.active { flex-basis:23px; width:23px; background:#e0ad72; }
+    .gallery-shell { width:100%; }
+    .gallery-grid { display:flex; flex-wrap:nowrap; gap:16px; overflow-x:auto; overflow-y:hidden; padding:4px 2px 18px; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:thin; scrollbar-color:var(--accent) #252a2d; }
+    .gallery-item { flex:0 0 clamp(250px,31vw,360px); min-height:0; height:300px; overflow:hidden; border-radius:5px; scroll-snap-align:start; }
+    .gallery-item:nth-child(1),.gallery-item:nth-child(8),.gallery-item:nth-child(14) { flex-basis:clamp(250px,31vw,360px); }
+    .gallery-item img { width:100%; height:100%; min-height:0; object-fit:cover; transition:transform .65s ease,filter .45s ease; }
+    .gallery-item:hover img { transform:scale(1.07); filter:brightness(1.12); }
+    .gallery-controls { display:flex; justify-content:flex-end; gap:9px; margin:4px 0 18px; }
+    .gallery-arrow { width:44px; height:44px; border:1px solid rgba(255,255,255,.24); background:#1b2023; color:#e0ad72; font-size:25px; cursor:pointer; transition:all .2s ease; }
+    .gallery-arrow:hover { background:var(--accent); color:#171717; transform:translateY(-2px); }
+    .gallery-more-wrap { display:flex; justify-content:center; margin-top:6px; }
+    .gallery-more-wrap .btn { gap:12px; cursor:pointer; }
+    .gallery-shell.expanded .gallery-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); overflow:visible; scroll-snap-type:none; }
+    .gallery-shell.expanded .gallery-item,.gallery-shell.expanded .gallery-item:nth-child(n) { width:auto; height:260px; min-height:0; }
+    .gallery-shell.expanded .gallery-item img { height:100%; }
+    .floating-contact { z-index:9999; }
+    .contact-options { display:flex; max-height:0; overflow:hidden; padding:0 10px; opacity:0; visibility:hidden; transform:translateY(12px); pointer-events:none; transition:max-height .35s ease,padding .25s ease,opacity .25s ease,transform .25s ease,visibility .25s ease; }
+    .floating-contact.open .contact-options { max-height:520px; padding:10px; opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
+    .contact-option { min-height:40px; }
+    @media(max-width:800px) {
+      .gallery-shell.expanded .gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .gallery-shell.expanded .gallery-item,.gallery-shell.expanded .gallery-item:nth-child(n) { height:220px; }
+    }
+    @media(max-width:540px) {
+      .hero-dots { bottom:28px; }
+      .gallery-item { flex-basis:82vw; height:260px; }
+      .gallery-shell.expanded .gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+      .gallery-shell.expanded .gallery-item,.gallery-shell.expanded .gallery-item:nth-child(n) { height:170px; }
+      .contact-options { width:min(285px,calc(100vw - 28px)); }
+    }
+
   </style>
 </head>
 <body>
@@ -117,12 +159,33 @@
 
   <main>
     <section class="hero" id="anasayfa">
+      <div class="hero-slides" aria-hidden="true">
+        <div class="hero-slide active" style="background-image:url('images/urun-01.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-02.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-03.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-04.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-05.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-06.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-07.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-08.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-09.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-10.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-11.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-12.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-13.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-14.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-15.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/urun-16.jpg')"></div>
+      </div>
       <div class="container"><div class="hero-content">
         <span class="eyebrow">Demir Doğrama & Metal İşleri</span>
         <h1>Demire şekil,<br><span>mekânınıza güven.</span></h1>
         <p>Ferforje kapılar, pencere korkulukları, bahçe kapıları, panjur ve özel ölçü metal işleri. İhtiyacınıza uygun, özenli işçilik.</p>
         <div class="actions"><a class="btn" href="#galeri">Yapılan İşleri İncele</a><a class="btn btn-outline" href="#iletisim">İletişime Geç</a></div>
       </div></div>
+      <div class="hero-dots" id="hero-dots" aria-label="Arka plan fotoğrafları">
+        <button class="hero-dot active" type="button" aria-label="1. fotoğraf"></button><button class="hero-dot" type="button" aria-label="2. fotoğraf"></button><button class="hero-dot" type="button" aria-label="3. fotoğraf"></button><button class="hero-dot" type="button" aria-label="4. fotoğraf"></button><button class="hero-dot" type="button" aria-label="5. fotoğraf"></button><button class="hero-dot" type="button" aria-label="6. fotoğraf"></button><button class="hero-dot" type="button" aria-label="7. fotoğraf"></button><button class="hero-dot" type="button" aria-label="8. fotoğraf"></button><button class="hero-dot" type="button" aria-label="9. fotoğraf"></button><button class="hero-dot" type="button" aria-label="10. fotoğraf"></button><button class="hero-dot" type="button" aria-label="11. fotoğraf"></button><button class="hero-dot" type="button" aria-label="12. fotoğraf"></button><button class="hero-dot" type="button" aria-label="13. fotoğraf"></button><button class="hero-dot" type="button" aria-label="14. fotoğraf"></button><button class="hero-dot" type="button" aria-label="15. fotoğraf"></button><button class="hero-dot" type="button" aria-label="16. fotoğraf"></button>
+      </div>
     </section>
 
     <section id="hakkimizda">
@@ -159,24 +222,31 @@
 
     <section id="galeri">
       <div class="container">
-        <div class="section-head"><span class="eyebrow">Gerçek İşlerimiz</span><h2>Fotoğraf galerisi</h2><p>Galeride ustanın gönderdiği gerçek iş fotoğrafları yer alıyor.</p></div>
-        <div class="gallery-grid">
-          <div class="gallery-item"><img src="images/urun-01.jpg" alt="Desenli ferforje çift kanat kapı"><span>Desenli ferforje kapı</span></div>
-          <div class="gallery-item"><img src="images/urun-02.jpg" alt="Metal panjur kapı"><span>Metal panjur kapı</span></div>
-          <div class="gallery-item"><img src="images/urun-03.jpg" alt="Metal panjur montaj detayı"><span>Panjur uygulaması</span></div>
-          <div class="gallery-item"><img src="images/urun-04.jpg" alt="Ferforje kapı ön görünüş"><span>Ferforje kapı</span></div>
-          <div class="gallery-item"><img src="images/urun-05.jpg" alt="Dış cephe metal korkuluk çalışması"><span>Dış cephe korkuluk</span></div>
-          <div class="gallery-item"><img src="images/urun-06.jpg" alt="Pencere metal korkuluğu"><span>Pencere korkuluğu</span></div>
-          <div class="gallery-item"><img src="images/urun-07.jpg" alt="Pencere korkuluğu montajı"><span>Korkuluk montajı</span></div>
-          <div class="gallery-item"><img src="images/urun-08.jpg" alt="Bahçe giriş kapısı"><span>Bahçe giriş kapısı</span></div>
-          <div class="gallery-item"><img src="images/urun-09.jpg" alt="Dekoratif demir korkuluk imalatı"><span>Dekoratif demir işçiliği</span></div>
-          <div class="gallery-item"><img src="images/urun-10.jpg" alt="Bahçe duvarı metal çit montajı"><span>Metal çit montajı</span></div>
-          <div class="gallery-item"><img src="images/urun-11.jpg" alt="Desenli bahçe kapısı"><span>Özel desenli kapı</span></div>
-          <div class="gallery-item"><img src="images/urun-12.jpg" alt="Bahçe çevreleme alanı"><span>Bahçe çevreleme</span></div>
-          <div class="gallery-item"><img src="images/urun-13.jpg" alt="Ferforje sürgülü kapı"><span>Sürgülü ferforje kapı</span></div>
-          <div class="gallery-item"><img src="images/urun-14.jpg" alt="Dekoratif metal bahçe kapısı"><span>Metal bahçe kapısı</span></div>
-          <div class="gallery-item"><img src="images/urun-15.jpg" alt="Açık renk ferforje kapı"><span>Ferforje uygulaması</span></div>
-          <div class="gallery-item"><img src="images/urun-16.jpg" alt="Bahçe giriş kapısı ve çevreleme"><span>Kapı ve çevreleme</span></div>
+        <div class="section-head"><span class="eyebrow">Gerçek İşlerimiz</span><h2>Fotoğraf galerisi</h2><p>Fotoğrafları sağa ve sola kaydırarak inceleyebilir, tüm çalışmaları görmek için aşağıdaki düğmeye basabilirsiniz.</p></div>
+        <div class="gallery-shell" id="gallery-shell">
+          <div class="gallery-grid" id="gallery-track">
+            <div class="gallery-item"><img src="images/urun-01.jpg" alt="Desenli ferforje çift kanat kapı"><span>Desenli ferforje kapı</span></div>
+            <div class="gallery-item"><img src="images/urun-02.jpg" alt="Metal panjur kapı"><span>Metal panjur kapı</span></div>
+            <div class="gallery-item"><img src="images/urun-03.jpg" alt="Metal panjur montaj detayı"><span>Panjur uygulaması</span></div>
+            <div class="gallery-item"><img src="images/urun-04.jpg" alt="Ferforje kapı ön görünüş"><span>Ferforje kapı</span></div>
+            <div class="gallery-item"><img src="images/urun-05.jpg" alt="Dış cephe metal korkuluk çalışması"><span>Dış cephe korkuluk</span></div>
+            <div class="gallery-item"><img src="images/urun-06.jpg" alt="Pencere metal korkuluğu"><span>Pencere korkuluğu</span></div>
+            <div class="gallery-item"><img src="images/urun-07.jpg" alt="Pencere korkuluğu montajı"><span>Korkuluk montajı</span></div>
+            <div class="gallery-item"><img src="images/urun-08.jpg" alt="Bahçe giriş kapısı"><span>Bahçe giriş kapısı</span></div>
+            <div class="gallery-item"><img src="images/urun-09.jpg" alt="Dekoratif demir korkuluk imalatı"><span>Dekoratif demir işçiliği</span></div>
+            <div class="gallery-item"><img src="images/urun-10.jpg" alt="Bahçe duvarı metal çit montajı"><span>Metal çit montajı</span></div>
+            <div class="gallery-item"><img src="images/urun-11.jpg" alt="Desenli bahçe kapısı"><span>Özel desenli kapı</span></div>
+            <div class="gallery-item"><img src="images/urun-12.jpg" alt="Bahçe çevreleme alanı"><span>Bahçe çevreleme</span></div>
+            <div class="gallery-item"><img src="images/urun-13.jpg" alt="Ferforje sürgülü kapı"><span>Sürgülü ferforje kapı</span></div>
+            <div class="gallery-item"><img src="images/urun-14.jpg" alt="Dekoratif metal bahçe kapısı"><span>Metal bahçe kapısı</span></div>
+            <div class="gallery-item"><img src="images/urun-15.jpg" alt="Açık renk ferforje kapı"><span>Ferforje uygulaması</span></div>
+            <div class="gallery-item"><img src="images/urun-16.jpg" alt="Bahçe giriş kapısı ve çevreleme"><span>Kapı ve çevreleme</span></div>
+          </div>
+          <div class="gallery-controls">
+            <button class="gallery-arrow" type="button" id="gallery-prev" aria-label="Önceki fotoğraflar">‹</button>
+            <button class="gallery-arrow" type="button" id="gallery-next" aria-label="Sonraki fotoğraflar">›</button>
+          </div>
+          <div class="gallery-more-wrap"><button class="btn btn-outline" type="button" id="gallery-more" aria-expanded="false">Tüm Fotoğrafları Gör <span id="gallery-more-icon">＋</span></button></div>
         </div>
       </div>
     </section>
@@ -217,6 +287,65 @@
     </button>
   </div>
 
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const heroSlides = Array.from(document.querySelectorAll(".hero-slide"));
+    const heroDots = Array.from(document.querySelectorAll(".hero-dot"));
+    let activeHero = 0;
+    let heroInterval;
+
+    function setHeroSlide(index) {
+      activeHero = (index + heroSlides.length) % heroSlides.length;
+      heroSlides.forEach((slide, i) => slide.classList.toggle("active", i === activeHero));
+      heroDots.forEach((dot, i) => dot.classList.toggle("active", i === activeHero));
+    }
+
+    function restartHeroSlideshow() {
+      clearInterval(heroInterval);
+      heroInterval = setInterval(() => setHeroSlide(activeHero + 1), 4000);
+    }
+
+    heroDots.forEach((dot, index) => dot.addEventListener("click", () => {
+      setHeroSlide(index);
+      restartHeroSlideshow();
+    }));
+    restartHeroSlideshow();
+
+    const galleryShell = document.getElementById("gallery-shell");
+    const galleryTrack = document.getElementById("gallery-track");
+    document.getElementById("gallery-prev").addEventListener("click", () => galleryTrack.scrollBy({ left: -galleryTrack.clientWidth * 0.85, behavior: "smooth" }));
+    document.getElementById("gallery-next").addEventListener("click", () => galleryTrack.scrollBy({ left: galleryTrack.clientWidth * 0.85, behavior: "smooth" }));
+
+    const galleryMore = document.getElementById("gallery-more");
+    const galleryMoreIcon = document.getElementById("gallery-more-icon");
+    galleryMore.addEventListener("click", () => {
+      const expanded = galleryShell.classList.toggle("expanded");
+      galleryMore.setAttribute("aria-expanded", String(expanded));
+      galleryMore.firstChild.textContent = expanded ? " Daha Az Göster " : " Tüm Fotoğrafları Gör ";
+      galleryMoreIcon.textContent = expanded ? "−" : "＋";
+      document.getElementById("gallery-prev").style.display = expanded ? "none" : "inline-block";
+      document.getElementById("gallery-next").style.display = expanded ? "none" : "inline-block";
+    });
+
+    const floatingContact = document.getElementById("floating-contact");
+    const contactLauncher = document.getElementById("contact-launcher");
+    const contactChevron = document.getElementById("contact-chevron");
+
+    contactLauncher.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const opened = floatingContact.classList.toggle("open");
+      contactLauncher.setAttribute("aria-expanded", String(opened));
+      contactChevron.textContent = opened ? "⌄" : "⌃";
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!floatingContact.contains(event.target)) {
+        floatingContact.classList.remove("open");
+        contactLauncher.setAttribute("aria-expanded", "false");
+        contactChevron.textContent = "⌃";
+      }
+    });
+  </script>
 </body>
 </html>
