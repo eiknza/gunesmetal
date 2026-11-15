@@ -66,6 +66,15 @@
     .contact-card strong { display:block; margin-bottom:5px; }
     .contact-card a { color:#e0ad72; overflow-wrap:anywhere; }
     .social-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
+    .floating-contact { position:fixed; z-index:20; right:22px; bottom:22px; display:flex; flex-direction:column; align-items:flex-end; gap:12px; }
+    .contact-options { display:flex; flex-direction:column; align-items:stretch; gap:8px; width:265px; padding:12px; background:rgba(22,27,30,.97); border:1px solid rgba(224,173,114,.48); box-shadow:0 16px 45px rgba(0,0,0,.4); border-radius:12px; opacity:0; visibility:hidden; transform:translateY(16px) scale(.96); transform-origin:bottom right; transition:opacity .25s ease,transform .25s ease,visibility .25s; }
+    .floating-contact.open .contact-options { opacity:1; visibility:visible; transform:translateY(0) scale(1); }
+    .contact-option { display:flex; align-items:center; gap:11px; padding:10px 11px; color:#f4f5f5; background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.07); border-radius:7px; font-size:13px; transition:background .2s ease,border-color .2s ease; }
+    .contact-option:hover { background:rgba(224,173,114,.14); border-color:rgba(224,173,114,.55); }
+    .contact-option-icon { width:28px; height:28px; flex:0 0 28px; display:grid; place-items:center; border-radius:50%; background:rgba(224,173,114,.16); color:#e0ad72; font-size:14px; font-weight:800; }
+    .contact-launcher { display:flex; align-items:center; gap:10px; min-height:54px; padding:0 19px; border:0; border-radius:30px; background:#c18a50; color:#171717; box-shadow:0 8px 26px rgba(0,0,0,.35); font-size:14px; font-weight:800; cursor:pointer; transition:transform .2s ease,background .2s ease; }
+    .contact-launcher:hover { transform:translateY(-3px); background:#e0ad72; }
+    .contact-launcher-icon { font-size:21px; line-height:1; }
     footer { padding:25px 0; border-top:1px solid var(--line); color:#929b9f; font-size:12px; }
     .footer-inner { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
     @media(max-width:800px) {
@@ -89,6 +98,9 @@
       .gallery-item:nth-child(1),.gallery-item:nth-child(8),.gallery-item:nth-child(14) { grid-column:span 2; }
       .gallery-item img { min-height:180px; }
       .contact-actions .btn { width:100%; }
+      .floating-contact { right:14px; bottom:14px; }
+      .contact-options { width:min(265px,calc(100vw - 28px)); }
+      .contact-launcher { min-height:50px; padding:0 16px; }
     }
   </style>
 </head>
@@ -188,6 +200,23 @@
   </main>
 
   <footer><div class="container footer-inner"><span>© <span id="year"></span> Demir Doğrama. Tüm hakları saklıdır.</span><span>Demir Doğrama & Metal İşleri</span></div></footer>
+
+  <div class="floating-contact" id="floating-contact">
+    <div class="contact-options" id="contact-options" aria-label="İletişim seçenekleri">
+      <a class="contact-option" href="https://wa.me/905353897441" target="_blank" rel="noopener"><span class="contact-option-icon">W</span><span>Ercan Öztürkler · WhatsApp</span></a>
+      <a class="contact-option" href="tel:+905353897441"><span class="contact-option-icon">☎</span><span>Ercan Öztürkler · 0535 389 74 41</span></a>
+      <a class="contact-option" href="https://wa.me/905435978783" target="_blank" rel="noopener"><span class="contact-option-icon">W</span><span>Medeni Bülbül · WhatsApp</span></a>
+      <a class="contact-option" href="tel:+905435978783"><span class="contact-option-icon">☎</span><span>Medeni Bülbül · 0543 597 87 83</span></a>
+      <a class="contact-option" href="https://wa.me/905324047065" target="_blank" rel="noopener"><span class="contact-option-icon">W</span><span>Medeni Bülbül · 2. WhatsApp</span></a>
+      <a class="contact-option" href="tel:+905324047065"><span class="contact-option-icon">☎</span><span>Medeni Bülbül · 0532 404 70 65</span></a>
+      <a class="contact-option" href="mailto:medeniblbl@gmail.com"><span class="contact-option-icon">@</span><span>medeniblbl@gmail.com</span></a>
+      <a class="contact-option" href="https://www.instagram.com/bulbulmedeni/" target="_blank" rel="noopener"><span class="contact-option-icon">◎</span><span>Instagram · @bulbulmedeni</span></a>
+    </div>
+    <button class="contact-launcher" id="contact-launcher" type="button" aria-expanded="false" aria-controls="contact-options">
+      <span class="contact-launcher-icon">✉</span><span>İletişime Geç</span><span id="contact-chevron">⌃</span>
+    </button>
+  </div>
+
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
