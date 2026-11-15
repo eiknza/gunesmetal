@@ -207,6 +207,29 @@ html.cursor-over-gallery .gallery-item:after {
 .category-shortcuts a{min-width:0;min-height:30px;padding:6px 8px;border-radius:8px;font-size:10px;line-height:1.2;white-space:normal;text-align:center}
 @media(max-width:720px){.nav-category-menu{width:250px;min-width:250px;max-width:calc(100vw - 30px);max-height:65vh;grid-template-columns:1fr}.nav-category-menu a{min-height:32px;padding:7px 10px;font-size:11px}.category-shortcuts{right:0;top:calc(100% + 9px);bottom:auto;transform:translateY(-8px);width:250px;max-width:min(250px,calc(100vw - 48px));grid-template-columns:1fr;gap:5px;padding:8px}.category-shortcuts a{width:100%;min-height:29px;padding:6px 9px;font-size:10px;text-align:left}.category-menu-wrap{max-width:35%}}
 
+
+/* Mobil fotoğraf büyütme penceresi: ekrana göre ölçeklendirme */
+@media(max-width:720px){
+  .photo-lightbox{padding: max(8px,env(safe-area-inset-top)) 8px max(8px,env(safe-area-inset-bottom));gap:8px;align-items:center;justify-content:center;overflow:hidden}
+  .photo-lightbox-content{width:100%;max-width:100%;max-height:calc(100dvh - 112px);height:auto;min-height:0;flex-direction:column;justify-content:center;align-items:center;gap:8px;overflow-y:auto;overflow-x:hidden;padding:42px 0 34px;box-sizing:border-box}
+  .photo-lightbox-content img{display:block;width:auto;height:auto;max-width:min(86vw,560px);max-height:clamp(135px,39dvh,340px);object-fit:contain;flex:0 0 auto}
+  .photo-lightbox-info{width:min(88vw,390px);max-width:100%;flex:0 0 auto;padding:9px 12px;border-radius:10px;box-sizing:border-box}
+  .photo-lightbox-info .info-eyebrow{font-size:9px;letter-spacing:1px}
+  .photo-lightbox-info h3{font-size:15px;line-height:1.2;margin:4px 0 6px}
+  .photo-lightbox-info p{display:inline-block;font-size:11px;line-height:1.25;margin:3px 9px 3px 0}
+  .photo-lightbox-info a{margin-top:5px;padding:7px 10px;font-size:11px;border-radius:7px}
+  .photo-lightbox-nav{width:34px;height:42px;font-size:27px;border-radius:9px}
+  .photo-lightbox-nav.prev{left:5px}.photo-lightbox-nav.next{right:5px}
+  .photo-lightbox-close{width:38px;height:38px;font-size:25px;top:max(7px,env(safe-area-inset-top));right:max(7px,env(safe-area-inset-right))}
+  .photo-lightbox-count{bottom:max(7px,env(safe-area-inset-bottom));font-size:10px;padding:4px 9px}
+}
+@media(max-width:390px){
+  .photo-lightbox-content{max-height:calc(100dvh - 100px);gap:6px;padding-top:39px;padding-bottom:30px}
+  .photo-lightbox-content img{max-width:82vw;max-height:36dvh}
+  .photo-lightbox-info{width:86vw;padding:8px 10px}
+  .photo-lightbox-info h3{font-size:14px}
+  .photo-lightbox-info p{font-size:10px;margin-right:6px}
+}
 </style>
 </head>
 <body>
