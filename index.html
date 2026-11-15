@@ -3,357 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Özel ölçü metal mobilya ve demir işleri. El işçiliğiyle üretilen masa, sehpa, raf ve daha fazlası.">
-  <title>USTA METAL | Metal Tasarım & Mobilya</title>
+  <meta name="description" content="Demir doğrama, ferforje kapı, pencere korkuluğu, bahçe kapısı ve özel metal işleri.">
+  <title>Demir Doğrama | Metal İşleri</title>
   <style>
-    :root {
-      --bg: #101214;
-      --panel: #181c1f;
-      --panel-2: #202529;
-      --text: #f3f4f4;
-      --muted: #aeb5b8;
-      --accent: #c18a50;
-      --accent-light: #e0ad72;
-      --line: rgba(255,255,255,.1);
-      --max: 1160px;
+    :root { --bg:#101214; --panel:#191e21; --text:#f4f5f5; --muted:#b3bbbe; --accent:#c18a50; --line:rgba(255,255,255,.12); --max:1160px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Arial,Helvetica,sans-serif; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; width:100%; }
+    .container { width:min(var(--max),calc(100% - 40px)); margin:0 auto; }
+    .topbar { position:absolute; z-index:5; top:0; left:0; width:100%; border-bottom:1px solid var(--line); }
+    .nav { min-height:82px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-size:18px; font-weight:800; letter-spacing:1.5px; }
+    .brand-mark { width:39px; height:39px; display:grid; place-items:center; border:1px solid var(--accent); color:#e0ad72; font-size:21px; }
+    .nav-links { display:flex; gap:26px; color:#e0e2e2; font-size:14px; }
+    .nav-links a:hover { color:#e0ad72; }
+    .nav-contact { border:1px solid var(--accent); padding:10px 16px; color:#e0ad72; font-size:13px; font-weight:700; }
+    .hero { min-height:690px; display:flex; align-items:center; position:relative; background:linear-gradient(90deg,rgba(7,9,10,.94),rgba(7,9,10,.70) 54%,rgba(7,9,10,.22)),url("images/urun-01.jpg") center 45%/cover; }
+    .hero:after { content:""; position:absolute; inset:auto 0 0; height:130px; background:linear-gradient(transparent,var(--bg)); }
+    .hero-content { position:relative; z-index:1; max-width:700px; padding:145px 0 100px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:10px; color:#e0ad72; font-size:12px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; }
+    .eyebrow:before { content:""; width:32px; height:1px; background:var(--accent); }
+    h1 { margin:22px 0 18px; font-size:clamp(42px,6.5vw,76px); line-height:1.04; letter-spacing:-2px; }
+    h1 span { color:#e0ad72; }
+    .hero p { max-width:590px; color:#d0d4d5; font-size:17px; margin:0 0 30px; }
+    .actions,.contact-actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .btn { min-height:48px; display:inline-flex; align-items:center; justify-content:center; padding:0 21px; background:var(--accent); color:#171717; font-size:13px; font-weight:800; }
+    .btn:hover { background:#e0ad72; }
+    .btn-outline { background:transparent; color:white; border:1px solid rgba(255,255,255,.45); }
+    .btn-outline:hover { background:white; color:#171717; }
+    section { padding:92px 0; }
+    .section-head { max-width:700px; margin-bottom:38px; }
+    .section-head h2,.about-copy h2 { margin:13px 0; font-size:clamp(31px,4vw,46px); line-height:1.12; }
+    .section-head p,.about-copy p { color:var(--muted); margin:0; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+    .about-image img { height:440px; object-fit:cover; }
+    .about-copy p + p { margin-top:15px; }
+    .features { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:26px; }
+    .feature { border-left:2px solid var(--accent); padding:4px 0 4px 13px; }
+    .feature strong { display:block; font-size:14px; }
+    .feature small { color:var(--muted); font-size:12px; }
+    .services { background:#15191c; }
+    .service-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .service { padding:25px; border:1px solid var(--line); background:var(--panel); }
+    .service span { color:#e0ad72; font-size:11px; font-weight:800; letter-spacing:1.5px; }
+    .service h3 { margin:9px 0 6px; font-size:19px; }
+    .service p { color:var(--muted); font-size:13px; margin:0; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; }
+    .gallery-item { grid-column:span 4; position:relative; overflow:hidden; min-height:240px; background:var(--panel); }
+    .gallery-item:nth-child(1),.gallery-item:nth-child(8),.gallery-item:nth-child(14) { grid-column:span 8; }
+    .gallery-item img { height:100%; min-height:260px; object-fit:cover; transition:transform .45s ease; }
+    .gallery-item:hover img { transform:scale(1.04); }
+    .gallery-item:after { content:""; position:absolute; inset:45% 0 0; background:linear-gradient(transparent,rgba(0,0,0,.72)); }
+    .gallery-item span { position:absolute; z-index:1; left:17px; bottom:14px; font-size:14px; font-weight:700; }
+    .contact { padding:80px 0; background:#15191c; }
+    .contact-box { padding:45px; background:linear-gradient(115deg,#252a2d,#171b1e); border:1px solid var(--line); }
+    .contact-box h2 { margin:10px 0; font-size:clamp(28px,4vw,42px); line-height:1.1; }
+    .contact-box > p { color:var(--muted); margin:0 0 26px; }
+    .contact-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:25px 0; }
+    .contact-card { padding:18px; background:rgba(255,255,255,.045); border:1px solid var(--line); }
+    .contact-card strong { display:block; margin-bottom:5px; }
+    .contact-card a { color:#e0ad72; overflow-wrap:anywhere; }
+    .social-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
+    footer { padding:25px 0; border-top:1px solid var(--line); color:#929b9f; font-size:12px; }
+    .footer-inner { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    @media(max-width:800px) {
+      .nav { min-height:72px; }
+      .nav-links { display:none; }
+      .hero { min-height:620px; }
+      .about-grid { grid-template-columns:1fr; gap:32px; }
+      .about-image img { height:350px; }
+      .service-grid { grid-template-columns:1fr 1fr; }
+      .contact-box { padding:30px 22px; }
     }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; width: 100%; }
-    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-
-    .topbar {
-      position: absolute;
-      z-index: 5;
-      top: 0;
-      left: 0;
-      width: 100%;
-      border-bottom: 1px solid rgba(255,255,255,.13);
-    }
-    .nav {
-      min-height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-    .brand-mark {
-      width: 39px;
-      height: 39px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--accent);
-      color: var(--accent-light);
-      font-size: 21px;
-      transform: rotate(45deg);
-    }
-    .brand-mark span { transform: rotate(-45deg); }
-    .nav-links { display: flex; align-items: center; gap: 30px; color: #e0e2e2; font-size: 14px; }
-    .nav-links a:hover { color: var(--accent-light); }
-    .nav-contact {
-      border: 1px solid var(--accent);
-      padding: 10px 17px;
-      color: var(--accent-light);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .hero {
-      min-height: 720px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(90deg, rgba(9,11,12,.96) 0%, rgba(9,11,12,.82) 45%, rgba(9,11,12,.25) 100%),
-        url("https://images.unsplash.com/photo-1538688423619-a81d3f23454b?auto=format&fit=crop&w=2000&q=85") center/cover;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 140px;
-      background: linear-gradient(transparent, var(--bg));
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 690px; padding: 150px 0 110px; }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--accent-light);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-    .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--accent); }
-    h1 {
-      margin: 23px 0 20px;
-      font-size: clamp(42px, 6.5vw, 76px);
-      line-height: 1.04;
-      letter-spacing: -2px;
-    }
-    h1 span { color: var(--accent-light); }
-    .hero p { max-width: 570px; color: #c4c9ca; font-size: 17px; margin: 0 0 32px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 13px; }
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 49px;
-      padding: 0 22px;
-      background: var(--accent);
-      color: #151515;
-      font-weight: 800;
-      font-size: 13px;
-      transition: .2s ease;
-    }
-    .btn:hover { background: var(--accent-light); transform: translateY(-2px); }
-    .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,.45); color: white; }
-    .btn-outline:hover { background: white; color: #151515; }
-
-    section { padding: 100px 0; }
-    .section-head { max-width: 680px; margin-bottom: 42px; }
-    .section-head h2 { margin: 13px 0 12px; font-size: clamp(31px, 4vw, 46px); line-height: 1.12; }
-    .section-head p { color: var(--muted); margin: 0; }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 65px; align-items: center; }
-    .about-image { min-height: 440px; position: relative; }
-    .about-image img { height: 440px; object-fit: cover; }
-    .about-image::after {
-      content: "EL EMEĞİ • SAĞLAM İŞÇİLİK";
-      position: absolute;
-      right: -16px;
-      bottom: 22px;
-      padding: 13px 18px;
-      background: var(--accent);
-      color: #171717;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-    }
-    .about-copy h2 { font-size: clamp(31px, 4vw, 44px); line-height: 1.12; margin: 14px 0 20px; }
-    .about-copy p { color: var(--muted); margin: 0 0 17px; }
-    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 28px; }
-    .feature { border-left: 2px solid var(--accent); padding: 4px 0 4px 13px; }
-    .feature strong { display: block; font-size: 14px; }
-    .feature small { color: var(--muted); font-size: 12px; }
-
-    .products { background: #15191c; }
-    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .product-card { background: var(--panel); border: 1px solid var(--line); overflow: hidden; }
-    .product-card img { height: 250px; object-fit: cover; transition: transform .5s ease; }
-    .product-card:hover img { transform: scale(1.045); }
-    .product-image { overflow: hidden; }
-    .product-info { padding: 21px; }
-    .product-info span { color: var(--accent-light); font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
-    .product-info h3 { margin: 7px 0 6px; font-size: 20px; }
-    .product-info p { color: var(--muted); font-size: 13px; margin: 0; }
-
-    .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
-    .gallery-item { position: relative; overflow: hidden; background: var(--panel); min-height: 220px; }
-    .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 7; }
-    .gallery-item:nth-child(2), .gallery-item:nth-child(3) { grid-column: span 5; }
-    .gallery-item img { height: 100%; min-height: 240px; object-fit: cover; transition: transform .5s ease; }
-    .gallery-item:hover img { transform: scale(1.05); }
-    .gallery-item::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.7)); pointer-events: none; }
-    .gallery-item span { position: absolute; z-index: 1; left: 20px; bottom: 16px; font-weight: 700; }
-
-    .process { background: #15191c; }
-    .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .step { padding: 28px; border: 1px solid var(--line); background: var(--panel); }
-    .step-number { color: var(--accent-light); font-size: 13px; font-weight: 800; letter-spacing: 2px; }
-    .step h3 { margin: 12px 0 8px; font-size: 19px; }
-    .step p { color: var(--muted); margin: 0; font-size: 14px; }
-
-    .contact { padding: 85px 0; }
-    .contact-box {
-      padding: 55px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-      background: linear-gradient(115deg, #252a2d, #171b1e);
-      border: 1px solid var(--line);
-    }
-    .contact-box h2 { margin: 10px 0; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; }
-    .contact-box p { color: var(--muted); margin: 0; }
-    .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-    footer { padding: 27px 0; border-top: 1px solid var(--line); color: #8f989c; font-size: 12px; }
-    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
-    .whatsapp-float {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 10;
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: #25d366;
-      color: #071b0d;
-      font-size: 25px;
-      font-weight: 900;
-      box-shadow: 0 8px 25px rgba(0,0,0,.35);
-    }
-
-    @media (max-width: 800px) {
-      .nav { min-height: 72px; }
-      .nav-links { display: none; }
-      .hero { min-height: 660px; background-position: 60% center; }
-      .hero-content { padding-top: 130px; }
-      .about-grid { grid-template-columns: 1fr; gap: 35px; }
-      .about-image { min-height: 330px; }
-      .about-image img { height: 330px; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .contact-box { padding: 35px 25px; align-items: flex-start; flex-direction: column; }
-    }
-    @media (max-width: 540px) {
-      .container { width: min(var(--max), calc(100% - 30px)); }
-      section { padding: 72px 0; }
-      .brand { font-size: 15px; }
-      .nav-contact { padding: 9px 11px; font-size: 11px; }
-      .hero { min-height: 620px; }
-      h1 { letter-spacing: -1px; }
-      .hero p { font-size: 15px; }
-      .product-grid, .process-grid { grid-template-columns: 1fr; }
-      .product-card img { height: 235px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item:nth-child(n) { grid-column: span 1; min-height: 180px; }
-      .gallery-item img { min-height: 180px; }
-      .gallery-item:nth-child(1) { grid-column: span 2; }
-      .features { gap: 12px; }
-      .contact-actions { width: 100%; }
-      .contact-actions .btn { width: 100%; }
+    @media(max-width:540px) {
+      .container { width:calc(100% - 30px); }
+      section { padding:70px 0; }
+      .brand { font-size:15px; }
+      .nav-contact { padding:9px 10px; font-size:11px; }
+      .hero p { font-size:15px; }
+      .service-grid,.contact-grid { grid-template-columns:1fr; }
+      .gallery-grid { grid-template-columns:1fr 1fr; }
+      .gallery-item,.gallery-item:nth-child(n) { grid-column:span 1; min-height:180px; }
+      .gallery-item:nth-child(1),.gallery-item:nth-child(8),.gallery-item:nth-child(14) { grid-column:span 2; }
+      .gallery-item img { min-height:180px; }
+      .contact-actions .btn { width:100%; }
     }
   </style>
 </head>
 <body>
-  <!-- DÜZENLEME: İşletme adı, usta adı ve telefon numarasını aşağıdaki ayarlardan değiştirebilirsin. -->
-  <script>
-    const SITE_SETTINGS = {
-      businessName: "USTA METAL",
-      masterName: "Usta Adı Soyadı",
-      phone: "905551112233", // Ülke koduyla, + işareti olmadan yaz. Örnek: 905xxxxxxxxx
-      displayPhone: "0555 111 22 33"
-    };
-  </script>
-
   <header class="topbar">
     <div class="container nav">
-      <a class="brand" href="#anasayfa"><span class="brand-mark"><span>U</span></span><span id="brandName">USTA METAL</span></a>
+      <a class="brand" href="#anasayfa"><span class="brand-mark">D</span><span>DEMİR DOĞRAMA</span></a>
       <nav class="nav-links">
-        <a href="#hakkimizda">Hakkımızda</a>
-        <a href="#urunler">Ürünler</a>
-        <a href="#galeri">Galeri</a>
-        <a href="#iletisim">İletişim</a>
+        <a href="#hakkimizda">Hakkımızda</a><a href="#hizmetler">Hizmetler</a><a href="#galeri">Galeri</a><a href="#iletisim">İletişim</a>
       </nav>
-      <a class="nav-contact" id="navPhone" href="#iletisim">BİZE ULAŞIN</a>
+      <a class="nav-contact" href="#iletisim">BİZE ULAŞIN</a>
     </div>
   </header>
 
   <main>
     <section class="hero" id="anasayfa">
-      <div class="container">
-        <div class="hero-content">
-          <span class="eyebrow">Metal Tasarım & El İşçiliği</span>
-          <h1>Demire şekil,<br><span>mekânınıza karakter.</span></h1>
-          <p>Sağlam metal işçiliğiyle hazırlanan masa, sehpa, raf ve özel tasarım mobilyalar. İhtiyacınıza ve ölçülerinize göre üretim.</p>
-          <div class="actions">
-            <a class="btn" href="#galeri">Ürünleri İncele</a>
-            <a class="btn btn-outline" id="heroWhatsApp" href="#iletisim">WhatsApp'tan Ulaş</a>
-          </div>
-        </div>
-      </div>
+      <div class="container"><div class="hero-content">
+        <span class="eyebrow">Demir Doğrama & Metal İşleri</span>
+        <h1>Demire şekil,<br><span>mekânınıza güven.</span></h1>
+        <p>Ferforje kapılar, pencere korkulukları, bahçe kapıları, panjur ve özel ölçü metal işleri. İhtiyacınıza uygun, özenli işçilik.</p>
+        <div class="actions"><a class="btn" href="#galeri">Yapılan İşleri İncele</a><a class="btn btn-outline" href="#iletisim">İletişime Geç</a></div>
+      </div></div>
     </section>
 
     <section id="hakkimizda">
       <div class="container about-grid">
-        <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1000&q=85" alt="Metal atölyesinde çalışma">
-        </div>
+        <div class="about-image"><img src="images/urun-07.jpg" alt="Pencere korkuluğu montajı yapan ustalar"></div>
         <div class="about-copy">
           <span class="eyebrow">Hakkımızda</span>
-          <h2>Her detayında emek, her parçasında sağlamlık.</h2>
-          <p><strong id="masterName">Usta Adı Soyadı</strong> tarafından hazırlanan metal mobilyalarda işlevsellik ve estetik bir araya geliyor.</p>
-          <p>Masa, sehpa, raf ve farklı metal tasarımlar; istenen ölçü, model ve kullanım alanına göre özenle hazırlanır. Aklınızdaki fikri birlikte ürüne dönüştürelim.</p>
+          <h2>Sağlam işçilik, özenli detaylar.</h2>
+          <p>Demir doğrama ve metal işlerinde farklı ihtiyaçlara yönelik üretim ve montaj çalışmaları yapılır.</p>
+          <p>Ferforje kapı ve bahçe kapılarından pencere korkuluklarına, panjur ve bahçe çevrelemelerine kadar çeşitli işler için iletişime geçebilirsiniz.</p>
           <div class="features">
-            <div class="feature"><strong>Özel ölçü üretim</strong><small>İhtiyacınıza uygun tasarım</small></div>
-            <div class="feature"><strong>El işçiliği</strong><small>Detaylara özenli yaklaşım</small></div>
-            <div class="feature"><strong>Sağlam malzeme</strong><small>Uzun ömürlü kullanım hedefi</small></div>
-            <div class="feature"><strong>Size özel tasarım</strong><small>Fikrinize göre üretim</small></div>
+            <div class="feature"><strong>Özel ölçü çalışmalar</strong><small>İhtiyaca uygun ölçülendirme</small></div>
+            <div class="feature"><strong>Demir doğrama</strong><small>Kapı, korkuluk ve panjur</small></div>
+            <div class="feature"><strong>Üretim ve montaj</strong><small>Atölye ve yerinde uygulama</small></div>
+            <div class="feature"><strong>Detaylı işçilik</strong><small>Model ve desen seçenekleri</small></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="products" id="urunler">
+    <section class="services" id="hizmetler">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Neler Yapıyoruz?</span>
-          <h2>Ürün ve çalışma alanlarımız</h2>
-          <p>Örnek ürün başlıklarıdır. Ustanın yaptığı işlere göre isimleri ve açıklamaları değiştirebilirsin.</p>
-        </div>
-        <div class="product-grid">
-          <article class="product-card">
-            <div class="product-image"><img src="https://images.unsplash.com/photo-1499933374294-4584851497cc?auto=format&fit=crop&w=900&q=85" alt="Metal ayaklı masa"></div>
-            <div class="product-info"><span>01 / Mobilya</span><h3>Metal Ayaklı Masalar</h3><p>Ahşap ve metalin bir araya geldiği masa tasarımları.</p></div>
-          </article>
-          <article class="product-card">
-            <div class="product-image"><img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85" alt="Metal raf ve dekorasyon"></div>
-            <div class="product-info"><span>02 / Dekorasyon</span><h3>Raf ve Kitaplıklar</h3><p>Ev ve iş yerleri için kullanışlı metal raf çözümleri.</p></div>
-          </article>
-          <article class="product-card">
-            <div class="product-image"><img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=85" alt="Metal mobilya sandalye"></div>
-            <div class="product-info"><span>03 / Tasarım</span><h3>Sehpa ve Mobilyalar</h3><p>Farklı ölçü ve modellerde tamamlayıcı mobilyalar.</p></div>
-          </article>
+        <div class="section-head"><span class="eyebrow">Hizmetler</span><h2>Yaptığımız işlerden bazıları</h2><p>Fotoğraflarda görülen uygulamalara göre hizmet başlıkları.</p></div>
+        <div class="service-grid">
+          <article class="service"><span>01 / KAPI</span><h3>Ferforje ve Bahçe Kapıları</h3><p>Desenli, sürgülü ve kanatlı demir kapı uygulamaları.</p></article>
+          <article class="service"><span>02 / KORKULUK</span><h3>Pencere Korkulukları</h3><p>Pencere ve benzeri alanlar için metal korkuluk imalatı.</p></article>
+          <article class="service"><span>03 / PANJUR</span><h3>Metal Panjur ve Kepenk</h3><p>Metal panjur ve kepenk türlerinde uygulamalar.</p></article>
+          <article class="service"><span>04 / ÇEVRELEME</span><h3>Bahçe Çitleri</h3><p>Bahçe ve çevre sınırları için metal çit sistemleri.</p></article>
+          <article class="service"><span>05 / MONTAJ</span><h3>Yerinde Montaj</h3><p>Ölçüye göre hazırlanan ürünlerin montaj çalışmaları.</p></article>
+          <article class="service"><span>06 / ÖZEL İŞ</span><h3>Özel Metal Tasarımlar</h3><p>İhtiyaca göre farklı demir ve metal işleri.</p></article>
         </div>
       </div>
     </section>
 
     <section id="galeri">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Atölyeden Kareler</span>
-          <h2>Galeri</h2>
-          <p>Buradaki örnek fotoğrafları zamanla ustanın kendi yaptığı ürünlerin fotoğraflarıyla değiştirebilirsin.</p>
-        </div>
+        <div class="section-head"><span class="eyebrow">Gerçek İşlerimiz</span><h2>Fotoğraf galerisi</h2><p>Galeride ustanın gönderdiği gerçek iş fotoğrafları yer alıyor.</p></div>
         <div class="gallery-grid">
-          <div class="gallery-item"><img src="https://images.unsplash.com/photo-1538688423619-a81d3f23454b?auto=format&fit=crop&w=1200&q=85" alt="Metal mobilya tasarımı"><span>Metal mobilya tasarımları</span></div>
-          <div class="gallery-item"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=85" alt="İç mekân mobilyası"><span>Yaşam alanları</span></div>
-          <div class="gallery-item"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85" alt="Modern mobilya"><span>Özel tasarımlar</span></div>
-          <div class="gallery-item"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=85" alt="Atölye ve üretim"><span>Atölye ve üretim</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="process">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Nasıl Çalışıyoruz?</span>
-          <h2>Fikrinizden ürüne, adım adım.</h2>
-        </div>
-        <div class="process-grid">
-          <div class="step"><span class="step-number">01 / İLETİŞİM</span><h3>İhtiyacınızı anlatın</h3><p>Nasıl bir ürün istediğinizi, ölçülerinizi ve varsa örnek görselinizi paylaşın.</p></div>
-          <div class="step"><span class="step-number">02 / TASARIM</span><h3>Detayları belirleyelim</h3><p>Ürünün ölçüsü, modeli ve diğer detayları birlikte netleştirelim.</p></div>
-          <div class="step"><span class="step-number">03 / ÜRETİM</span><h3>Ürününüz hazırlansın</h3><p>Üretim ve teslimat detayları için doğrudan iletişime geçin.</p></div>
+          <div class="gallery-item"><img src="images/urun-01.jpg" alt="Desenli ferforje çift kanat kapı"><span>Desenli ferforje kapı</span></div>
+          <div class="gallery-item"><img src="images/urun-02.jpg" alt="Metal panjur kapı"><span>Metal panjur kapı</span></div>
+          <div class="gallery-item"><img src="images/urun-03.jpg" alt="Metal panjur montaj detayı"><span>Panjur uygulaması</span></div>
+          <div class="gallery-item"><img src="images/urun-04.jpg" alt="Ferforje kapı ön görünüş"><span>Ferforje kapı</span></div>
+          <div class="gallery-item"><img src="images/urun-05.jpg" alt="Dış cephe metal korkuluk çalışması"><span>Dış cephe korkuluk</span></div>
+          <div class="gallery-item"><img src="images/urun-06.jpg" alt="Pencere metal korkuluğu"><span>Pencere korkuluğu</span></div>
+          <div class="gallery-item"><img src="images/urun-07.jpg" alt="Pencere korkuluğu montajı"><span>Korkuluk montajı</span></div>
+          <div class="gallery-item"><img src="images/urun-08.jpg" alt="Bahçe giriş kapısı"><span>Bahçe giriş kapısı</span></div>
+          <div class="gallery-item"><img src="images/urun-09.jpg" alt="Dekoratif demir korkuluk imalatı"><span>Dekoratif demir işçiliği</span></div>
+          <div class="gallery-item"><img src="images/urun-10.jpg" alt="Bahçe duvarı metal çit montajı"><span>Metal çit montajı</span></div>
+          <div class="gallery-item"><img src="images/urun-11.jpg" alt="Desenli bahçe kapısı"><span>Özel desenli kapı</span></div>
+          <div class="gallery-item"><img src="images/urun-12.jpg" alt="Bahçe çevreleme alanı"><span>Bahçe çevreleme</span></div>
+          <div class="gallery-item"><img src="images/urun-13.jpg" alt="Ferforje sürgülü kapı"><span>Sürgülü ferforje kapı</span></div>
+          <div class="gallery-item"><img src="images/urun-14.jpg" alt="Dekoratif metal bahçe kapısı"><span>Metal bahçe kapısı</span></div>
+          <div class="gallery-item"><img src="images/urun-15.jpg" alt="Açık renk ferforje kapı"><span>Ferforje uygulaması</span></div>
+          <div class="gallery-item"><img src="images/urun-16.jpg" alt="Bahçe giriş kapısı ve çevreleme"><span>Kapı ve çevreleme</span></div>
         </div>
       </div>
     </section>
@@ -361,45 +172,22 @@
     <section class="contact" id="iletisim">
       <div class="container">
         <div class="contact-box">
-          <div>
-            <span class="eyebrow">İletişim</span>
-            <h2>Aklınızdaki tasarımı<br>birlikte hayata geçirelim.</h2>
-            <p>Ürün, ölçü ve fiyat bilgisi için bizimle iletişime geçin.</p>
-            <p style="margin-top:12px;color:#f3f4f4;font-weight:700" id="contactPhone">0555 111 22 33</p>
+          <span class="eyebrow">İletişim</span>
+          <h2>İşiniz için teklif alın.</h2>
+          <p>Ölçü, model ve fiyat bilgisi için aşağıdaki numaralardan ulaşabilirsiniz.</p>
+          <div class="contact-grid">
+            <div class="contact-card"><strong>Ercan Öztürkler</strong><a href="tel:+905353897441">+90 535 389 74 41</a><br><a href="https://wa.me/905353897441" target="_blank" rel="noopener">WhatsApp'tan yaz</a></div>
+            <div class="contact-card"><strong>Medeni Bülbül</strong><a href="tel:+905435978783">+90 543 597 87 83</a><br><a href="https://wa.me/905435978783" target="_blank" rel="noopener">WhatsApp'tan yaz</a></div>
+            <div class="contact-card"><strong>Medeni Bülbül · 2. Numara</strong><a href="tel:+905324047065">+90 532 404 70 65</a><br><a href="https://wa.me/905324047065" target="_blank" rel="noopener">WhatsApp'tan yaz</a></div>
+            <div class="contact-card"><strong>E-posta</strong><a href="mailto:medeniblbl@gmail.com">medeniblbl@gmail.com</a></div>
           </div>
-          <div class="contact-actions">
-            <a class="btn" id="contactWhatsApp" href="#">WhatsApp'tan Yazın</a>
-            <a class="btn btn-outline" id="callPhone" href="#">Hemen Arayın</a>
-          </div>
+          <div class="social-links"><a class="btn btn-outline" href="https://www.instagram.com/bulbulmedeni/" target="_blank" rel="noopener">Instagram: @bulbulmedeni</a></div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> <span id="footerName">USTA METAL</span>. Tüm hakları saklıdır.</span>
-      <span>Metal Tasarım & El İşçiliği</span>
-    </div>
-  </footer>
-
-  <a class="whatsapp-float" id="floatingWhatsApp" href="#" aria-label="WhatsApp ile iletişim">W</a>
-
-  <script>
-    document.title = SITE_SETTINGS.businessName + " | Metal Tasarım & Mobilya";
-    document.getElementById("brandName").textContent = SITE_SETTINGS.businessName;
-    document.getElementById("footerName").textContent = SITE_SETTINGS.businessName;
-    document.getElementById("masterName").textContent = SITE_SETTINGS.masterName;
-    document.getElementById("contactPhone").textContent = SITE_SETTINGS.displayPhone;
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const phoneNumber = SITE_SETTINGS.phone.replace(/\D/g, "");
-    const whatsappUrl = "https://wa.me/" + phoneNumber;
-    document.getElementById("heroWhatsApp").href = whatsappUrl;
-    document.getElementById("contactWhatsApp").href = whatsappUrl;
-    document.getElementById("floatingWhatsApp").href = whatsappUrl;
-    document.getElementById("callPhone").href = "tel:+" + phoneNumber;
-    document.getElementById("navPhone").href = "tel:+" + phoneNumber;
-  </script>
+  <footer><div class="container footer-inner"><span>© <span id="year"></span> Demir Doğrama. Tüm hakları saklıdır.</span><span>Demir Doğrama & Metal İşleri</span></div></footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
