@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Demir doğrama, ferforje kapı, pencere korkuluğu, bahçe kapısı ve özel metal işleri.">
-  <title>Demir Doğrama | Metal İşleri</title>
+  <meta name="description" content="Güneş Yapı - Bilecik Merkez. Ferforje, lazer kesim kapı, duvar ve üstü korkuluk uygulamaları.">
+  <title>Güneş Yapı | Ferforje ve Lazer Kesim</title>
   <style>
     :root { --bg:#101214; --panel:#191e21; --text:#f4f5f5; --muted:#b3bbbe; --accent:#c18a50; --line:rgba(255,255,255,.12); --max:1160px; }
     * { box-sizing:border-box; }
@@ -16,7 +16,10 @@
     .topbar { position:absolute; z-index:5; top:0; left:0; width:100%; border-bottom:1px solid var(--line); }
     .nav { min-height:82px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
     .brand { display:flex; align-items:center; gap:12px; font-size:18px; font-weight:800; letter-spacing:1.5px; }
-    .brand-mark { width:39px; height:39px; display:grid; place-items:center; border:1px solid var(--accent); color:#e0ad72; font-size:21px; }
+    .brand img { width:205px; height:68px; object-fit:contain; }
+    .brand-mark { display:none; }
+    .nav-location { color:#e0ad72; font-size:13px; font-weight:700; white-space:nowrap; }
+    .footer-brand { width:185px; height:64px; object-fit:contain; }
     .nav-links { display:flex; gap:26px; color:#e0e2e2; font-size:14px; }
     .nav-links a:hover { color:#e0ad72; }
     .nav-contact { border:1px solid var(--accent); padding:10px 16px; color:#e0ad72; font-size:13px; font-weight:700; }
@@ -60,11 +63,15 @@
     .contact { padding:80px 0; background:#15191c; }
     .contact-box { padding:45px; background:linear-gradient(115deg,#252a2d,#171b1e); border:1px solid var(--line); }
     .contact-box h2 { margin:10px 0; font-size:clamp(28px,4vw,42px); line-height:1.1; }
-    .contact-box > p { color:var(--muted); margin:0 0 26px; }
+    .contact-box > p { color:var(--muted); margin:0 0 16px; }
+    .contact-box > .contact-location { color:#e0ad72; margin:0 0 26px; }
     .contact-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:25px 0; }
     .contact-card { padding:18px; background:rgba(255,255,255,.045); border:1px solid var(--line); }
     .contact-card strong { display:block; margin-bottom:5px; }
     .contact-card a { color:#e0ad72; overflow-wrap:anywhere; }
+    .contact-buttons { display:flex; flex-wrap:wrap; gap:9px; margin-top:13px; }
+    .contact-action { display:inline-flex; align-items:center; justify-content:center; min-height:39px; padding:8px 12px; border:1px solid rgba(224,173,114,.42); border-radius:5px; background:rgba(224,173,114,.09); color:#e9b77f !important; font-size:13px; font-weight:700; text-decoration:none; transition:background .2s ease,border-color .2s ease,transform .2s ease; }
+    .contact-action:hover { background:rgba(224,173,114,.2); border-color:#e0ad72; transform:translateY(-2px); }
     .social-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
     .floating-contact { position:fixed; z-index:20; right:22px; bottom:22px; display:flex; flex-direction:column; align-items:flex-end; gap:12px; }
     .contact-options { display:flex; flex-direction:column; align-items:stretch; gap:8px; width:265px; padding:12px; background:rgba(22,27,30,.97); border:1px solid rgba(224,173,114,.48); box-shadow:0 16px 45px rgba(0,0,0,.4); border-radius:12px; opacity:0; visibility:hidden; transform:translateY(16px) scale(.96); transform-origin:bottom right; transition:opacity .25s ease,transform .25s ease,visibility .25s; }
@@ -90,6 +97,8 @@
       .container { width:calc(100% - 30px); }
       section { padding:70px 0; }
       .brand { font-size:15px; }
+      .brand img { width:155px; height:56px; }
+      .nav-location { display:none; }
       .nav-contact { padding:9px 10px; font-size:11px; }
       .hero p { font-size:15px; }
       .service-grid,.contact-grid { grid-template-columns:1fr; }
@@ -149,11 +158,11 @@
 <body>
   <header class="topbar">
     <div class="container nav">
-      <a class="brand" href="#anasayfa"><span class="brand-mark">D</span><span>DEMİR DOĞRAMA</span></a>
+      <a class="brand" href="#anasayfa" aria-label="Güneş Yapı ana sayfa"><img src="images/gunes-yapi-logo.png" alt="Güneş Yapı - Ferforje, Lazer Kesim, Korkuluk"></a>
       <nav class="nav-links">
         <a href="#hakkimizda">Hakkımızda</a><a href="#hizmetler">Hizmetler</a><a href="#galeri">Galeri</a><a href="#iletisim">İletişim</a>
       </nav>
-      <a class="nav-contact" href="#iletisim">BİZE ULAŞIN</a>
+      <span class="nav-location">⌖ Bilecik / Merkez</span><a class="nav-contact" href="#iletisim">BİZE ULAŞIN</a>
     </div>
   </header>
 
@@ -178,9 +187,9 @@
         <div class="hero-slide" style="background-image:url('images/urun-16.jpg')"></div>
       </div>
       <div class="container"><div class="hero-content">
-        <span class="eyebrow">Demir Doğrama & Metal İşleri</span>
-        <h1>Demire şekil,<br><span>mekânınıza güven.</span></h1>
-        <p>Ferforje kapılar, pencere korkulukları, bahçe kapıları, panjur ve özel ölçü metal işleri. İhtiyacınıza uygun, özenli işçilik.</p>
+        <span class="eyebrow">Güneş Yapı · Bilecik / Merkez</span>
+        <h1>Demire şekil,<br><span>mekânınıza değer.</span></h1>
+        <p>Ferforje ve lazer kesim kapı, duvar ve üstü korkuluk uygulamaları. İhtiyacınıza uygun, estetik ve özenli metal işçiliği.</p>
         <div class="actions"><a class="btn" href="#galeri">Yapılan İşleri İncele</a><a class="btn btn-outline" href="#iletisim">İletişime Geç</a></div>
       </div></div>
       <div class="hero-dots" id="hero-dots" aria-label="Arka plan fotoğrafları">
@@ -193,14 +202,14 @@
         <div class="about-image"><img src="images/urun-07.jpg" alt="Pencere korkuluğu montajı yapan ustalar"></div>
         <div class="about-copy">
           <span class="eyebrow">Hakkımızda</span>
-          <h2>Sağlam işçilik, özenli detaylar.</h2>
-          <p>Demir doğrama ve metal işlerinde farklı ihtiyaçlara yönelik üretim ve montaj çalışmaları yapılır.</p>
-          <p>Ferforje kapı ve bahçe kapılarından pencere korkuluklarına, panjur ve bahçe çevrelemelerine kadar çeşitli işler için iletişime geçebilirsiniz.</p>
+          <h2>Güneş Yapı</h2>
+          <p>Güneş Yapı olarak Bilecik / Merkez’de ferforje ve lazer kesim metal uygulamaları gerçekleştiriyoruz.</p>
+          <p>Lazer kesim kapı, duvar ve üstü korkuluk çalışmalarının yanı sıra ferforje kapı ve korkuluk sistemlerinde estetik tasarım, sağlam üretim ve özenli işçiliği bir araya getiriyoruz.</p>
           <div class="features">
             <div class="feature"><strong>Özel ölçü çalışmalar</strong><small>İhtiyaca uygun ölçülendirme</small></div>
-            <div class="feature"><strong>Demir doğrama</strong><small>Kapı, korkuluk ve panjur</small></div>
+            <div class="feature"><strong>Lazer kesim</strong><small>Kapı, duvar ve üstü korkuluk</small></div>
             <div class="feature"><strong>Üretim ve montaj</strong><small>Atölye ve yerinde uygulama</small></div>
-            <div class="feature"><strong>Detaylı işçilik</strong><small>Model ve desen seçenekleri</small></div>
+            <div class="feature"><strong>Ferforje uygulamalar</strong><small>Estetik desen ve korkuluklar</small></div>
           </div>
         </div>
       </div>
@@ -208,14 +217,14 @@
 
     <section class="services" id="hizmetler">
       <div class="container">
-        <div class="section-head"><span class="eyebrow">Hizmetler</span><h2>Yaptığımız işlerden bazıları</h2><p>Fotoğraflarda görülen uygulamalara göre hizmet başlıkları.</p></div>
+        <div class="section-head"><span class="eyebrow">Hizmetler</span><h2>Yaptığımız işlerden bazıları</h2><p>Ferforje, lazer kesim kapı ve duvar uygulamaları ile üstü korkuluk lazer çalışmalarımız.</p></div>
         <div class="service-grid">
-          <article class="service"><span>01 / KAPI</span><h3>Ferforje ve Bahçe Kapıları</h3><p>Desenli, sürgülü ve kanatlı demir kapı uygulamaları.</p></article>
+          <article class="service"><span>01 / KAPI</span><h3>Ferforje ve Lazer Kesim Kapı Duvar</h3><p>Lazer kesim kapı ve duvar uygulamaları ile estetik, dayanıklı metal tasarımlar.</p></article>
           <article class="service"><span>02 / KORKULUK</span><h3>Pencere Korkulukları</h3><p>Pencere ve benzeri alanlar için metal korkuluk imalatı.</p></article>
           <article class="service"><span>03 / PANJUR</span><h3>Metal Panjur ve Kepenk</h3><p>Metal panjur ve kepenk türlerinde uygulamalar.</p></article>
           <article class="service"><span>04 / ÇEVRELEME</span><h3>Bahçe Çitleri</h3><p>Bahçe ve çevre sınırları için metal çit sistemleri.</p></article>
           <article class="service"><span>05 / MONTAJ</span><h3>Yerinde Montaj</h3><p>Ölçüye göre hazırlanan ürünlerin montaj çalışmaları.</p></article>
-          <article class="service"><span>06 / ÖZEL İŞ</span><h3>Özel Metal Tasarımlar</h3><p>İhtiyaca göre farklı demir ve metal işleri.</p></article>
+          <article class="service"><span>06 / LAZER KESİM</span><h3>Üstü Korkuluk Lazer</h3><p>Duvar üstü lazer kesim korkuluk ve tamamlayıcı metal uygulamaları.</p></article>
         </div>
       </div>
     </section>
@@ -257,19 +266,48 @@
           <span class="eyebrow">İletişim</span>
           <h2>İşiniz için teklif alın.</h2>
           <p>Ölçü, model ve fiyat bilgisi için aşağıdaki numaralardan ulaşabilirsiniz.</p>
+          <p class="contact-location">⌖ <strong>Adres:</strong> Bilecik / Merkez</p>
           <div class="contact-grid">
-            <div class="contact-card"><strong>Ercan Öztürkler</strong><a href="tel:+905353897441">+90 535 389 74 41</a><br><a href="https://wa.me/905353897441" target="_blank" rel="noopener">WhatsApp'tan yaz</a></div>
-            <div class="contact-card"><strong>Medeni Bülbül</strong><a href="tel:+905435978783">+90 543 597 87 83</a><br><a href="https://wa.me/905435978783" target="_blank" rel="noopener">WhatsApp'tan yaz</a></div>
-            <div class="contact-card"><strong>Medeni Bülbül · 2. Numara</strong><a href="tel:+905324047065">+90 532 404 70 65</a><br><a href="https://wa.me/905324047065" target="_blank" rel="noopener">WhatsApp'tan yaz</a></div>
-            <div class="contact-card"><strong>E-posta</strong><a href="mailto:medeniblbl@gmail.com">medeniblbl@gmail.com</a></div>
+            <div class="contact-card">
+              <strong>Ercan Öztürkler</strong>
+              <div class="contact-buttons">
+                <a class="contact-action" href="tel:+905353897441">☎ Ara: +90 535 389 74 41</a>
+                <a class="contact-action" href="https://wa.me/905353897441" target="_blank" rel="noopener">WhatsApp'tan yaz</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <strong>Medeni Bülbül</strong>
+              <div class="contact-buttons">
+                <a class="contact-action" href="tel:+905435978783">☎ Ara: +90 543 597 87 83</a>
+                <a class="contact-action" href="https://wa.me/905435978783" target="_blank" rel="noopener">WhatsApp'tan yaz</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <strong>Medeni Bülbül · 2. Numara</strong>
+              <div class="contact-buttons">
+                <a class="contact-action" href="tel:+905324047065">☎ Ara: +90 532 404 70 65</a>
+                <a class="contact-action" href="https://wa.me/905324047065" target="_blank" rel="noopener">WhatsApp'tan yaz</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <strong>E-posta</strong>
+              <div class="contact-buttons">
+                <a class="contact-action" href="mailto:medeniblbl@gmail.com">✉ E-posta gönder</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <strong>Instagram</strong>
+              <div class="contact-buttons">
+                <a class="contact-action" href="https://www.instagram.com/bulbulmedeni/" target="_blank" rel="noopener">◎ @bulbulmedeni profiline git</a>
+              </div>
+            </div>
           </div>
-          <div class="social-links"><a class="btn btn-outline" href="https://www.instagram.com/bulbulmedeni/" target="_blank" rel="noopener">Instagram: @bulbulmedeni</a></div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer><div class="container footer-inner"><span>© <span id="year"></span> Demir Doğrama. Tüm hakları saklıdır.</span><span>Demir Doğrama & Metal İşleri</span></div></footer>
+  <footer><div class="container footer-inner"><img class="footer-brand" src="images/gunes-yapi-logo.png" alt="Güneş Yapı"><span>© <span id="year"></span> Güneş Yapı. Tüm hakları saklıdır.</span><span>Bilecik / Merkez</span></div></footer>
 
   <div class="floating-contact" id="floating-contact">
     <div class="contact-options" id="contact-options" aria-label="İletişim seçenekleri">
