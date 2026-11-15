@@ -254,6 +254,29 @@ html.cursor-over-gallery .gallery-item:after {
   .photo-lightbox-info h3{font-size:14px}
   .photo-lightbox-info p{font-size:10px;margin-right:6px}
 }
+
+/* Mobil fotoğraf penceresi: kapatma düğmesi daima görünür, içerik ekrana sığar */
+@media (max-width: 720px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  #photo-lightbox.open { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100vh !important; height: 100dvh !important; box-sizing: border-box !important; padding: max(58px, calc(env(safe-area-inset-top) + 50px)) 42px max(48px, calc(env(safe-area-inset-bottom) + 38px)) !important; display: flex !important; align-items: center !important; justify-content: center !important; overflow: hidden !important; }
+  #photo-lightbox.open .photo-lightbox-close { display: grid !important; place-items: center !important; position: fixed !important; top: max(9px, env(safe-area-inset-top)) !important; right: max(9px, env(safe-area-inset-right)) !important; z-index: 2147483647 !important; width: 42px !important; height: 42px !important; min-width: 42px !important; min-height: 42px !important; padding: 0 !important; font-size: 27px !important; line-height: 1 !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  #photo-lightbox.open .photo-lightbox-content { width: 100% !important; max-width: 100% !important; max-height: 100% !important; height: auto !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important; gap: 9px !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; overflow: hidden !important; box-sizing: border-box !important; }
+  #photo-lightbox.open .photo-lightbox-content img { display: block !important; width: auto !important; height: auto !important; max-width: 100% !important; max-height: min(38dvh, 300px) !important; object-fit: contain !important; flex: 0 1 auto !important; }
+  #photo-lightbox.open .photo-lightbox-info { width: min(100%, 360px) !important; max-width: 100% !important; max-height: 27dvh !important; overflow-y: auto !important; flex: 0 1 auto !important; box-sizing: border-box !important; padding: 9px 11px !important; margin: 0 !important; }
+  #photo-lightbox.open .photo-lightbox-info h3 { font-size: 14px !important; line-height: 1.2 !important; margin: 3px 0 5px !important; }
+  #photo-lightbox.open .photo-lightbox-info p { display: block !important; font-size: 10px !important; line-height: 1.2 !important; margin: 3px 0 !important; }
+  #photo-lightbox.open .photo-lightbox-info a { margin-top: 6px !important; padding: 7px 10px !important; font-size: 11px !important; }
+  #photo-lightbox.open .photo-lightbox-nav { position: fixed !important; z-index: 2147483646 !important; top: 50% !important; width: 32px !important; height: 42px !important; font-size: 26px !important; }
+  #photo-lightbox.open .photo-lightbox-nav.prev { left: 4px !important; }
+  #photo-lightbox.open .photo-lightbox-nav.next { right: 4px !important; }
+  #photo-lightbox.open .photo-lightbox-count { position: fixed !important; bottom: max(7px, env(safe-area-inset-bottom)) !important; z-index: 2147483646 !important; font-size: 10px !important; }
+}
+@media (max-width: 390px) {
+  #photo-lightbox.open { padding-left: 38px !important; padding-right: 38px !important; }
+  #photo-lightbox.open .photo-lightbox-content img { max-height: 34dvh !important; }
+  #photo-lightbox.open .photo-lightbox-info { max-height: 29dvh !important; padding: 8px 9px !important; }
+}
+
 </style>
 </head>
 <body>
