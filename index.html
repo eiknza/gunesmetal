@@ -327,9 +327,101 @@ html.cursor-over-gallery .gallery-item:after {
 @media(max-width:720px){.nav-links{gap:9px;padding-left:0;padding-right:0}}
 @media(max-width:390px){.nav-links{gap:6px}.nav-links a,.nav-category-toggle{font-size:11px}}
 
-/* Son menü aralığı ayarı */
+/* Önceki menü aralığı ayarı */
 @media(min-width:721px){.topbar .nav{gap:2px}.topbar .nav-links{margin-left:3px}}
 @media(max-width:720px){.topbar .nav-links{justify-content:flex-start!important;gap:5px!important;flex:0 1 auto!important}.topbar .nav-links>a,.topbar .nav-links>.nav-current,.topbar .nav-links .nav-category{flex:0 0 auto!important}}
+
+/* Son menü aralığı ayarı */
+@media (min-width: 721px) {
+  .topbar .nav { gap: 0 !important; }
+  .topbar .nav-links { margin-left: -12px !important; gap: 0 !important; }
+}
+@media (max-width: 720px) {
+  .topbar .nav-links { gap: 7px !important; }
+}
+@media (max-width: 390px) {
+  .topbar .nav-links { gap: 7px !important; }
+}
+
+/* Masaüstü üst menü: okunaklı aralık ve zarif çerçeveli bağlantılar */
+@media (min-width:721px){
+  .topbar .nav{gap:10px}
+  .topbar .nav-links{gap:14px;margin-left:8px;align-items:center}
+  .topbar .nav-links>a,
+  .topbar .nav-links>.nav-current,
+  .topbar .nav-links .nav-category-toggle{
+    height:40px;min-height:40px;padding:0 13px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(232,169,54,.42);border-radius:9px;
+    background:linear-gradient(145deg,rgba(232,169,54,.09),rgba(255,255,255,.025));
+    color:#f1f1f1;font-size:14px;line-height:1;white-space:nowrap;
+    transition:background .2s,border-color .2s,color .2s,box-shadow .2s,transform .2s;
+  }
+  .topbar .nav-links>a:hover,
+  .topbar .nav-links>.nav-current,
+  .topbar .nav-links .nav-category-toggle:hover,
+  .topbar .nav-links .nav-category.open .nav-category-toggle{
+    border-color:var(--gold);background:rgba(232,169,54,.17);color:var(--gold2);
+    box-shadow:0 3px 12px rgba(0,0,0,.2);
+  }
+  .topbar .nav-links a.active:after,
+  .topbar .nav-links .nav-current:after,
+  .topbar .nav-links .nav-category.active .nav-category-toggle:after{display:none}
+  .topbar .nav-links .nav-category{height:40px}
+  .topbar .nav-links .nav-category-toggle{gap:7px}
+}
+@media(max-width:720px){
+  .topbar .nav-links{gap:7px}
+}
+
+/* Üst menü bağlantıları: profesyonel buton görünümü */
+.topbar .nav-links{display:flex;align-items:center;gap:15px;margin-left:10px;}
+.topbar .nav-links>a,
+.topbar .nav-links>.nav-current,
+.topbar .nav-links .nav-category-toggle{
+  box-sizing:border-box;min-height:40px;height:40px;padding:0 14px;
+  display:flex;align-items:center;justify-content:center;white-space:nowrap;
+  border:1px solid rgba(226,169,73,.58);border-radius:8px;
+  background:linear-gradient(135deg,rgba(226,169,73,.13),rgba(255,255,255,.035));
+  color:#f3f0e9;font-size:14px;font-weight:600;line-height:1;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 2px 8px rgba(0,0,0,.16);
+  transition:background .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.topbar .nav-links>a:hover,
+.topbar .nav-links>.nav-current,
+.topbar .nav-links .nav-category-toggle:hover,
+.topbar .nav-links .nav-category.open .nav-category-toggle{
+  border-color:#e8ad43;background:linear-gradient(135deg,rgba(232,173,67,.25),rgba(232,173,67,.09));
+  color:#ffd27a;box-shadow:0 4px 14px rgba(0,0,0,.25),0 0 0 1px rgba(232,173,67,.08);
+}
+.topbar .nav-links>a:active,.topbar .nav-links .nav-category-toggle:active{transform:translateY(1px)}
+.topbar .nav-links a.active:after,.topbar .nav-links .nav-current:after{display:none}
+.topbar .nav-links .nav-category{height:40px;display:flex;align-items:center}
+.topbar .nav-links .nav-category-toggle{gap:7px;cursor:pointer}
+@media(min-width:721px){
+  .topbar .nav{gap:8px}
+  .topbar .nav-links{gap:15px;margin-left:8px}
+}
+@media(max-width:720px){
+  .topbar .nav-links{gap:6px!important;margin-left:0!important;min-width:0;}
+  .topbar .nav-links>a,.topbar .nav-links>.nav-current,.topbar .nav-links .nav-category-toggle{
+    min-height:34px;height:34px;padding:0 7px;font-size:11px;border-radius:7px;
+  }
+}
+@media(max-width:390px){
+  .topbar .nav-links{gap:4px!important}
+  .topbar .nav-links>a,.topbar .nav-links>.nav-current,.topbar .nav-links .nav-category-toggle{padding:0 5px;font-size:10px}
+}
+
+/* Üst menü butonları arasındaki boşluk */
+@media (min-width: 768px){
+  .topbar .nav-links{gap:20px!important}
+}
+@media (max-width: 767px){
+  .topbar .nav-links{gap:7px!important}
+}
+@media (max-width: 390px){
+  .topbar .nav-links{gap:6px!important}
+}
 </style>
 </head>
 <body>
