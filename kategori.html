@@ -307,6 +307,27 @@ html.cursor-over-gallery .gallery-item:after {
         transition: filter .16s ease;
     }
 }
+
+/* Mobil üst menü: logo solda, sayfa bağlantıları hemen sağında */
+@media(max-width:720px){
+  .topbar{height:auto;min-height:58px}
+  .topbar>.container.nav{width:calc(100% - 20px);min-height:58px;display:flex;flex-wrap:nowrap;align-items:center;justify-content:flex-start;gap:7px;padding:4px 0}
+  .topbar .brand{width:auto;flex:0 0 auto;display:flex;justify-content:flex-start;align-items:center;margin:0}
+  .topbar .brand img{display:block;width:92px;height:48px;object-fit:contain;object-position:left center}
+  .topbar .nav-links{order:0;flex:1 1 auto;width:auto;min-width:0;height:42px;display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:5px;padding:0;margin:0;overflow:visible;font-size:10px}
+  .topbar .nav-links>a,.topbar .nav-links>.nav-current{height:36px;flex:0 1 auto;display:flex;align-items:center;justify-content:center;white-space:nowrap;font-size:10px;letter-spacing:-.25px}
+  .topbar .nav-links .nav-category{flex:0 1 auto;min-width:0}
+  .topbar .nav-links .nav-category-toggle{font-size:10px;white-space:nowrap;padding-left:0;padding-right:0}
+  .topbar .nav-links a.active:after,.topbar .nav-links .nav-current:after{bottom:1px}
+  .topbar .location{display:none}
+}
+@media(max-width:360px){
+  .topbar>.container.nav{width:calc(100% - 14px);gap:5px}
+  .topbar .brand img{width:82px}
+  .topbar .nav-links{gap:3px;font-size:9px}
+  .topbar .nav-links>a,.topbar .nav-links>.nav-current,.topbar .nav-links .nav-category-toggle{font-size:9px}
+}
+
 </style>
 </head>
 <body>
