@@ -309,6 +309,11 @@ html.cursor-over-gallery .gallery-item:after {
   .topbar .nav-links a.active:after,.topbar .nav-links .nav-current:after{bottom:1px}
   .topbar .location{display:none}
 }
+/* Mobilde üst Kategoriler menüsünü ekranın sağına sabitle */
+@media(max-width:720px){
+  .topbar .nav-category{position:static}
+  .topbar .nav-category-menu{position:fixed!important;top:58px!important;right:10px!important;left:auto!important;width:min(250px,calc(100vw - 20px))!important;min-width:0!important;max-width:calc(100vw - 20px)!important;max-height:calc(100dvh - 76px)!important;overflow-y:auto;z-index:9999}
+}
 @media(max-width:360px){
   .topbar>.container.nav{width:calc(100% - 14px);gap:5px}
   .topbar .brand img{width:82px}
