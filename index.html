@@ -574,8 +574,8 @@ const topbar=document.querySelector('.topbar');let lastScroll=window.scrollY,scr
 const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -35px 0px'});document.querySelectorAll('.intro,.features-bar,.gallery-section,.contact-section,.footer').forEach(el=>{el.classList.add('reveal');revealObserver.observe(el)});document.querySelectorAll('.about-photo,.about-copy,.work-copy,.gallery-item,.contact-card').forEach((el,i)=>{el.classList.add('reveal-item');el.style.transitionDelay=(i%5)*85+'ms';revealObserver.observe(el)});
 
 // Supabase ayarlari: proje URL ve anon key degerleri eklendiginde yorumlar etkinlesir.
-const REVIEWS_SUPABASE_URL='SUPABASE_PROJECT_URL';
-const REVIEWS_SUPABASE_ANON_KEY='SUPABASE_ANON_PUBLIC_KEY';
+const REVIEWS_SUPABASE_URL='https://iivoneqyrxxovvorxyqc.supabase.co';
+const REVIEWS_SUPABASE_ANON_KEY='sb_publishable_TEXH5GHuLu0dd1oa1sPyQQ_y93h8RlF';
 const reviewForm=document.getElementById('review-form');
 if(reviewForm){
  const reviewStatus=document.getElementById('review-status'),reviewItems=document.getElementById('review-items'),reviewSubmit=document.getElementById('review-submit'),ratingButtons=[...document.querySelectorAll('#review-rating button')];let selectedRating=0;
