@@ -1,0 +1,33 @@
+GÜNEŞ METAL - TEKLİF ALMA SİSTEMİ KURULUMU
+
+1) Supabase projenizi açın.
+2) SQL Editor > New query bölümüne girin.
+3) Bu klasördeki supabase-teklif-sistemi.sql dosyasının tamamını yapıştırıp çalıştırın.
+4) SQL başarılı olduktan sonra GitHub deposunda aşağıdaki dosyaları güncelleyin:
+   - anasayfa.html
+   - admin-panel.html
+   - index.html (mevcut yönlendirme dosyası olarak koruyun)
+   - kategori.html
+   - yasal-bilgilendirme.html
+   - images klasöründeki yeni .webp dosyaları
+5) Teklif talepleri anasayfadaki Teklif Al bölümünden gönderilebilir.
+6) Yönetim panelinde Teklif Talepleri bölümünden müşteri bilgilerini görebilir, WhatsApp ile iletişim kurabilir, fotoğrafı açabilir ve durumu değiştirebilirsiniz.
+
+FOTOĞRAF OPTİMİZASYONU
+- Sayfaların kullandığı yerel JPG/PNG görseller WebP karşılıklarına yönlendirildi.
+- Eski dosyalar geriye dönük uyumluluk için images klasöründe bırakılmıştır.
+- Yeni teklif fotoğrafları yüklenmeden önce tarayıcıda küçültülüp WebP biçimine dönüştürülür.
+
+WHATSAPP
+- Sabit WhatsApp teklif düğmesi Ercan Öztürkler'in +90 535 389 74 41 numarasına bağlanır.
+- Yönetim panelindeki her teklif kartında müşterinin telefonuna göre WhatsApp bağlantısı bulunur.
+
+MÜŞTERİ MEMNUNİYETİ
+- Mevcut onaylı yorum sistemi ve puan ortalaması korunmuştur.
+- Yorumlar yönetici onayından sonra yayınlanır.
+
+GÜVENLİK
+- Teklif kayıtlarını ziyaretçiler listeleyemez veya okuyamaz.
+- Teklif kayıtlarını yalnızca yönetici yetkisi olan oturumlar görüntüleyebilir ve güncelleyebilir.
+- Eklenen fotoğraflar özel (private) Supabase Storage alanında tutulur; yönetim paneli kısa süreli imzalı bağlantı üretir.
+- Supabase SQL kurulmadan formun veri kaydı çalışmaz.
