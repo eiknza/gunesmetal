@@ -1,0 +1,22 @@
+GUNES METAL - YORUM SISTEMI GUNCELLEMESI
+
+1) Supabase projenizi acin.
+2) Sol menuden SQL Editor > New query secin.
+3) Bu ZIP icindeki supabase-reviews-anti-duplicate.sql dosyasinin TAMAMINI yapistirip Run'a basin.
+4) Islem basarili olduktan sonra GitHub Pages'te index.html, kategori.html, yasal-bilgilendirme.html ve images klasorunu yeni dosyalarla degistirin.
+5) Siteyi telefonda acip Ctrl+F5 (bilgisayarda) veya tarayici onbellegini temizleyerek yenileyin.
+
+YENI KORUMALAR
+- Ayni isim (buyuk/kucuk harf fark etmeksizin) ikinci kez yorum yapamaz.
+- Ayni e-posta ikinci kez yorum yapamaz.
+- Ayni IP adresinden ikinci kez yorum yapilamaz. IP adresi acik metin olarak degil, SHA-256 ozeti olarak saklanir.
+- Yeni yorumlar yine pending olarak kaydedilir; yonetici onayi olmadan yayinlanmaz.
+- Bu kurallar eski yorum kayitlarini da kapsar. Veritabaninda onceden ayni isim/e-posta ile birden fazla kayit varsa unique index olusturma adimi hata verebilir; o durumda once cakisan kayitlari duzenlemek gerekir.
+
+ARAYUZ
+- Mobil form alanlarinin dokunma/tiklama alani guclendirildi.
+- Yorum yapma formu, musteri yorumlari listesinin ustune alindi.
+- 180 karakterden uzun yorumlar ilk basta kisaltilir; Devamini Oku / Daha Az Goster ile acilip kapanir.
+
+NOT
+IP bazli tek yorum siniri ayni internet cikisini kullanan farkli kisileri de kapsar (ornegin ayni Wi-Fi). Bu, istenen IP basina tek yorum kuralinin dogal sonucudur.
