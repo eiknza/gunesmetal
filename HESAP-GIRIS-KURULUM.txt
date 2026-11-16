@@ -1,0 +1,18 @@
+GUNES METAL - HESAP ACMA / GIRIS SISTEMI
+
+1) index.html ve kategori.html dosyalarinda ust sagda, Bilecik / Merkez yazisinin solunda Giris Yap ve Kayit Ol butonlari bulunur.
+2) Kayit Ol ile Supabase Auth kullanilarak e-posta/sifre hesabi acilir. Supabase projesinde Authentication > Providers > Email ayarinin etkin oldugunu kontrol edin. E-posta dogrulamasi aciksa kullanici gelen baglantidan e-postasini dogrulamalidir.
+3) Ayni e-posta ile ikinci hesap acilamaz; bu kontrol Supabase Auth tarafindan yapilir.
+4) Kayit olan her hesap normal kullanicidir. Yonetim paneli yetkisi otomatik verilmez.
+5) Daha once SQL ile review_admins tablosuna eklediginiz ilk yonetici yetkisini korur. Ikinci yoneticiye yetki vermek icin o kisi once siteden hesap olustursun. Ardindan Supabase > Authentication > Users ekranindan kullanicinin UID degerini alin ve SQL Editor'de su sorguyu calistirin:
+
+insert into public.review_admins (user_id)
+values ('IKINCI_YONETICININ_AUTH_UID_DEGERI')
+on conflict (user_id) do nothing;
+
+6) Yonetici hesabi giris yaptiginda ust menude Yonetim Paneli baglantisi gorunur. Ayrica admin-panel.html dogrudan acilabilir. Gercek yetki kontrolu Supabase RLS politikalarindadir.
+7) Bu paket hesap kaydini e-posta basina tekilleştirir. Ayni IP'den sadece bir hesap acilmasi bu HTML istemcisinden guvenli sekilde garanti edilemez; bunun icin Supabase Edge Function ve sunucu tarafli IP rate-limit kurulumu gerekir. Bu nedenle IP basina hesap siniri varmis gibi gosterilmez.
+8) Publishable key tarayicida kullanilabilir. Secret/service_role anahtarini HTML dosyalarina eklemeyin.
+
+9) Sifremi Unuttum baglantisi Supabase sifre yenileme e-postasi gonderir. Bunun calismasi icin Supabase > Authentication > URL Configuration > Redirect URLs bolumune su adresi ekleyin: https://eiknza.github.io/demirdograma/index.html
+10) Kullanici e-postasina gelen baglantiya tikladiginda siteye doner ve yeni sifresini belirleyebilir. E-posta saglayicinizin sifre sifirlama e-postalarini gonderebildigini kontrol edin.

@@ -1,0 +1,34 @@
+GUNES METAL - YONETIM PANELI
+
+Bu ZIP'te admin-panel.html gercek Supabase yonetim panelidir. Demo degildir.
+
+1) Supabase tarafinda yonetici hesabinizi Auth > Users bolumunde olusturmus olmalisiniz.
+2) Yonetici yetkisi icin SQL Editor'de calistirdiginiz review_admins / is_review_admin SQL kodu uygulanmis olmalidir.
+3) admin-panel.html dosyasini tek basina cift tiklayarak file:// adresinden acmak yerine yerel web sunucusuyla calistirin:
+   - ZIP'i bir klasore cikarin.
+   - O klasorde Komut Istemi (CMD) acin.
+   - su komutu calistirin: py -m http.server 8000
+   - Tarayicida su adresi acin: http://localhost:8000/admin-panel.html
+   - Panelde Supabase Auth kullanici e-posta ve sifrenizle giris yapin.
+
+Alternatif: VS Code Live Server eklentisiyle klasoru acip admin-panel.html dosyasinda Open with Live Server secin.
+
+Panel ozellikleri:
+- Bekleyen / yayinlanan / reddedilen yorum filtreleri
+- Yorum onaylama, reddetme ve silme
+- Anasayfa bağlantısı panelden çıkar ve web sitesi oturumunu açık bırakır; yönetim paneline geri dönüldüğünde geçerli yönetici oturumu varsa parola tekrar istenmez
+- Toplam yorum, bekleyen yorum ve onayli yorumlarin ortalama puani
+- Supabase RLS ve yonetici rol kontrolu ile yetkilendirme
+
+Guvenlik:
+- HTML icinde yalnizca Supabase Publishable key bulunur. Bu anahtar tarayici icin tasarlanmistir.
+- Secret/service_role key kesinlikle HTML'e eklenmez ve kimseyle paylasilmaz.
+- Yonetici erisimi Supabase tarafindaki review_admins tablosu ve is_review_admin() fonksiyonuyla denetlenir.
+- Admin paneli internete yayinlanirsa Supabase Auth redirect URL ayarlarina kendi panel adresinizi ekleyin.
+
+Yorum formu:
+- Ad zorunludur, soyad istege baglidir.
+- Soyad gizleme secilirse veritabanina yalnizca ad gonderilir.
+- E-posta zorunludur ve ziyaretcilere acik yorum sorgularinda gosterilmez.
+
+Not: Daha once SQL Editor'de basariyla calistirdiginiz yonetici yetki SQL'ini tekrar calistirmaniz gerekmez.

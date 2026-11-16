@@ -1,22 +1,24 @@
 GUNES METAL - YORUM SISTEMI GUNCELLEMESI
 
 1) Supabase projenizi acin.
-2) Sol menuden SQL Editor > New query secin.
-3) Bu ZIP icindeki supabase-reviews-anti-duplicate.sql dosyasinin TAMAMINI yapistirip Run'a basin.
-4) Islem basarili olduktan sonra GitHub Pages'te index.html, kategori.html, yasal-bilgilendirme.html ve images klasorunu yeni dosyalarla degistirin.
-5) Siteyi telefonda acip Ctrl+F5 (bilgisayarda) veya tarayici onbellegini temizleyerek yenileyin.
+2) Sol menuden SQL Editor > New Query secin.
+3) Bu ZIP icindeki supabase-yorum-icin-giris-zorunlu.sql dosyasinin TAMAMINI yapistirip Run'a basin. Bu guncel dosya onceki yorum giris zorunlulugu fonksiyonunun yerine gecer ve eski yorum adlarini da maskeler.
+4) GitHub Pages'te index.html, admin-panel.html, kategori.html, yasal-bilgilendirme.html dosyalarini ve images klasorunu ZIP'teki yenileriyle degistirin.
+5) Siteyi tarayicida onbellek temizleyerek veya Ctrl+F5 ile yenileyin.
 
-YENI KORUMALAR
-- Ayni isim (buyuk/kucuk harf fark etmeksizin) ikinci kez yorum yapamaz.
-- Ayni e-posta ikinci kez yorum yapamaz.
-- Ayni IP adresinden ikinci kez yorum yapilamaz. IP adresi acik metin olarak degil, SHA-256 ozeti olarak saklanir.
-- Yeni yorumlar yine pending olarak kaydedilir; yonetici onayi olmadan yayinlanmaz.
-- Bu kurallar eski yorum kayitlarini da kapsar. Veritabaninda onceden ayni isim/e-posta ile birden fazla kayit varsa unique index olusturma adimi hata verebilir; o durumda once cakisan kayitlari duzenlemek gerekir.
+GIZLILIK
+- Yorum yazmak icin kullanicinin oturum acmasi gerekir.
+- Yorum formunda ad ve e-posta alani gosterilmez.
+- Yorumlarda yalnizca soyadinin ilk harfi ve maskeli karakterler gorunur (ornek: O****).
+- E-posta adresi hesap ve tekrar yorum kontrolu icin veritabaninda tutulur; ziyaretcilere acik yorum alanlarinda gosterilmez.
+- Yorum metni oldugu gibi kalir; yorum kartlarinda kisiye ait puan yildizlari gosterilmez.
+- Yeni yorumlar yonetici onayindan sonra yayinlanir.
+- Ayni hesap ve ayni IP adresinden ikinci yorum engellenir. IP adresi acik metin olarak degil, SHA-256 ozeti olarak saklanir.
 
 ARAYUZ
-- Mobil form alanlarinin dokunma/tiklama alani guclendirildi.
-- Yorum yapma formu, musteri yorumlari listesinin ustune alindi.
-- 180 karakterden uzun yorumlar ilk basta kisaltilir; Devamini Oku / Daha Az Goster ile acilip kapanir.
+- Yorum formunda ad ve e-posta alanlari kaldirildi; sadece puan, yorum ve onay alani kaldi.
+- Uzun yorumlar Devamini Oku / Daha Az Goster ile acilip kapanir.
+- Yorum listesinde ad yerine maskeli soyad ve yorum metni gosterilir.
 
 NOT
-IP bazli tek yorum siniri ayni internet cikisini kullanan farkli kisileri de kapsar (ornegin ayni Wi-Fi). Bu, istenen IP basina tek yorum kuralinin dogal sonucudur.
+IP bazli tek yorum siniri ayni internet cikisini kullanan farkli kisileri de kapsar (ornegin ayni Wi-Fi).

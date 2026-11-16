@@ -1,0 +1,21 @@
+GÜNEŞ METAL - İSTATİSTİK KURULUMU
+
+1. Supabase projenizi açın.
+2. SQL Editor > New query bölümüne girin.
+3. Bu klasördeki supabase-site-istatistikleri.sql dosyasının tamamını yapıştırıp Run düğmesine basın.
+4. GitHub deposunda admin-panel.html, anasayfa.html, kategori.html ve yasal-bilgilendirme.html dosyalarını güncelleyin. index.html yönlendirme dosyasını da mevcut haliyle koruyun.
+5. Yönetim panelini yenileyin. İstatistikler, Site İstatistikleri başlığı altında görünür.
+
+ÖLÇÜMLER
+- Toplam üye ve bugün kayıt olan yeni üyeler: profiles tablosundan hesaplanır.
+- Bugünkü giriş sayısı: kurulumdan sonra kaydedilen oturum açma olaylarıdır.
+- Bugün giriş yapan tekil üye: aynı gün giriş yapan farklı üye hesaplarıdır.
+- Tekil ziyaretçi: tarayıcıda saklanan rastgele ziyaretçi kimliğiyle günlük tekil tarayıcı sayısıdır. Aynı kişi farklı tarayıcı/cihaz kullanırsa ayrı sayılabilir; tarayıcı verilerini silerse yeni ziyaretçi olarak sayılabilir.
+- Sayfa görüntüleme: ana sayfa, kategoriler ve yasal bilgilendirme sayfalarının her yüklenişidir.
+- Son 5 dakika aktif: son 5 dakika içinde bu sayfalardan birini yüklemiş tarayıcı sayısına yakın bir göstergedir; gerçek zamanlı çevrimiçi kullanıcı garantisi değildir.
+- Günlük yorum: reviews tablosuna o gün gönderilen yorumların toplamıdır.
+
+ÖNEMLİ
+- Geçmişe dönük giriş ve ziyaret verisi üretilemez. Ölçüm SQL kurulumundan ve yeni dosyaların yayına alınmasından sonra başlar.
+- İstatistik ekranı yalnızca yönetici yetkisiyle çağrılabilir. Ziyaretçi ve giriş kayıt tabloları doğrudan herkese açılmaz; kayıtlar güvenli RPC fonksiyonlarıyla yapılır.
+- Tekil ziyaretçi kimliği kişiyi tanımlayan ad/e-posta/telefon değildir; tarayıcıda tutulan rastgele bir kimliktir.

@@ -1,0 +1,19 @@
+GUNES METAL - HESAP PROFILI VE UYE LISTESI KURULUMU
+
+1) Supabase > SQL Editor > New query ac.
+2) Bu klasordeki supabase-profil-sistemi.sql dosyasinin tamamini yapistirip Run'a bas.
+3) SQL basarili olduktan sonra index.html, kategori.html, admin-panel.html, yasal-bilgilendirme.html ve images klasorunu GitHub'a yukle.
+4) Siteye giris yapan kullanici ust barda kendi adini gorur. Adina tiklayinca Hesabim acilir.
+5) Kullanici telefonunu ve e-postasini degistirebilir. Sifresini degistirirken once mevcut sifresini dogrulamak zorundadir. Ad soyad degisikligi 15 gunde bir veritabani tarafinda sinirlanir.
+6) Admin panelinde Uyeler bolumu uye profillerini ve e-posta ile eslesen yorumlarini listeler. Bu bolum yalnizca review_admin yetkisi olan hesaplarda calisir.
+
+NOTLAR:
+- E-posta degisikliginde Supabase Email Confirm ayari aciksa yeni e-posta icin onay istenebilir.
+- Supabase Auth guvenlik geregi sifreler listelenmez; yoneticiler uyelerin sifresini goremez.
+- Telefon numarasi profil tablosunda saklanir.
+- 15 gunluk ad degisikligi kisiti SQL fonksiyonunda uygulanir.
+- Yeni uyeler otomatik yonetici olmaz. Yonetici yapmak icin review_admins tablosuna kullanicinin UID'si eklenmelidir.
+- Uye listesi ve uye yorum eslestirmesi yonetici yetkisi gerektirir.
+
+- Hesabim penceresi ekran yuksekligini asmayacak sekilde sinirlanir; kucuk ekranlarda icerik pencere icinde kaydirilir.
+- Sifremi Unuttum akisi icin HESAP-GIRIS-KURULUM.txt icindeki Supabase Redirect URL ayarini tamamlayin.
