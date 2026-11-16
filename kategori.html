@@ -333,6 +333,11 @@ html.cursor-over-gallery .gallery-item:after {
   .topbar .nav-links>a,.topbar .nav-links>.nav-current,.topbar .nav-links .nav-category-toggle{font-size:9px}
 }
 
+/* Menü aralıkları: logo ve bağlantılar birbirine yaklaştırıldı */
+.nav{gap:clamp(8px,1.2vw,16px)}
+.nav-links{gap:clamp(9px,1.05vw,17px);margin-left:12px}
+@media(max-width:720px){.nav-links{gap:9px;padding-left:0;padding-right:0}}
+@media(max-width:390px){.nav-links{gap:6px}.nav-links a,.nav-category-toggle{font-size:11px}}
 </style>
 </head>
 <body>
