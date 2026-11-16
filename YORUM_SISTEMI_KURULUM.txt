@@ -1,0 +1,22 @@
+GÜNEŞ METAL - YORUM SİSTEMİ KURULUMU
+
+Bu ZIP'te yorum bölümü tasarıma eklendi. Yorumların gerçekten kaydedilip herkese gösterilmesi için ücretsiz Supabase projesi bağlanmalıdır. GitHub Pages tek başına veritabanı sağlamaz.
+
+1) https://supabase.com adresinden ücretsiz hesap açın ve New project ile proje oluşturun.
+2) Sol menüden SQL Editor > New query bölümünü açın.
+3) Bu klasördeki supabase-reviews-setup.sql dosyasının tamamını yapıştırıp Run'a basın.
+4) Project Settings > API bölümünden Project URL ve anon/public key değerlerini kopyalayın. service_role key'i ASLA kullanmayın ve HTML'e koymayın.
+5) index.html içinde şu iki satırı bulun:
+   const REVIEWS_SUPABASE_URL='SUPABASE_PROJECT_URL';
+   const REVIEWS_SUPABASE_ANON_KEY='SUPABASE_ANON_PUBLIC_KEY';
+   Tırnakların içindeki yer tutucuları kendi Project URL ve anon/public key değerlerinizle değiştirin.
+6) Güncel index.html dosyasını GitHub'a yükleyin.
+
+YORUM ONAYLAMA
+Supabase > Table Editor > reviews tablosuna girin. Yeni yorumlar status=pending olarak gelir. Yalnızca yayınlamak istediklerinizin status alanını approved yapın. Reddedilecek yorumu rejected yapabilir veya silebilirsiniz.
+
+GİZLİLİK
+E-posta adresi formda zorunludur ancak sitede yayınlanmaz. Bu adres kişisel veridir; yayınlamadan önce KVKK aydınlatma metninizde yorum/iletişim amacıyla işleme, saklama süresi ve ilgili haklar konusunda gerekli bilgilendirmeyi yapın. Bu örnek teknik kurulumdur; hukuki uygunluk garantisi değildir.
+
+GÜVENLİK NOTU
+HTML'de yalnızca Supabase anon/public key kullanılmalıdır. service_role key kesinlikle eklenmemelidir. Bu yapı gönderileri beklemeye alır ve herkese yalnızca onaylanmış yorumları gösterir. Spam'e karşı ayrıca CAPTCHA/rate-limit eklenmesi önerilir.
