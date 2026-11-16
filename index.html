@@ -422,7 +422,6 @@ html.cursor-over-gallery .gallery-item:after {
 @media (max-width: 390px){
   .topbar .nav-links{gap:6px!important}
 }
-<
 
 /* Mobil hero metinleri: sol alt konum ve daha kompakt ölçek */
 @media(max-width:720px){
@@ -443,6 +442,11 @@ html.cursor-over-gallery .gallery-item:after {
   .hero-content .actions{gap:5px}
   .hero-content .btn{height:28px;padding:0 7px;font-size:8px}
 }
+/* Özellikler satırında hover animasyonlarını kapat */
+.feature-row{position:relative;isolation:isolate}
+.feature-point{position:relative;z-index:0;pointer-events:auto;cursor:default;transform:none!important;transition:none!important;box-shadow:none!important}
+.feature-point:hover{z-index:0;transform:none!important;border-color:rgba(255,255,255,.25);box-shadow:none!important}
+.feature-point:last-child{border:0}
 </style>
 </head>
 <body>
@@ -553,6 +557,6 @@ const slides=[...document.querySelectorAll('.hero-slide')],dotsBox=document.getE
 const track=document.getElementById('gallery-track');function galleryStep(){const item=track.querySelector('.gallery-item');return item?item.getBoundingClientRect().width+parseFloat(getComputedStyle(track).gap||0):track.clientWidth*.8}document.getElementById('gallery-prev').addEventListener('click',()=>track.scrollBy({left:-galleryStep(),behavior:'smooth'}));document.getElementById('gallery-next').addEventListener('click',()=>track.scrollBy({left:galleryStep(),behavior:'smooth'}));
 const floating=document.getElementById('floating-contact'),launcher=document.getElementById('contact-launcher');function toggleContact(open){floating.classList.toggle('open',open);launcher.setAttribute('aria-expanded',String(open))}launcher.addEventListener('click',e=>{e.stopPropagation();toggleContact(!floating.classList.contains('open'))});document.getElementById('contact-close').addEventListener('click',e=>{e.stopPropagation();toggleContact(false)});document.addEventListener('pointerdown',e=>{if(!floating.contains(e.target))toggleContact(false)});document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleContact(false)});
 const topbar=document.querySelector('.topbar');let lastScroll=window.scrollY,scrollTick=false;function handleScroll(){const y=window.scrollY;if(y<70){topbar.classList.remove('nav-hidden')}else if(y>lastScroll+5){topbar.classList.add('nav-hidden')}else if(y<lastScroll-5){topbar.classList.remove('nav-hidden')}lastScroll=y;scrollTick=false}window.addEventListener('scroll',()=>{if(!scrollTick){window.requestAnimationFrame(handleScroll);scrollTick=true}},{passive:true});document.querySelectorAll('.nav-links a,.footer-nav a,.brand').forEach(link=>link.addEventListener('click',()=>topbar.classList.remove('nav-hidden')));
-const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -35px 0px'});document.querySelectorAll('.intro,.features-bar,.gallery-section,.contact-section,.footer').forEach(el=>{el.classList.add('reveal');revealObserver.observe(el)});document.querySelectorAll('.feature-point,.about-photo,.about-copy,.work-copy,.gallery-item,.contact-card').forEach((el,i)=>{el.classList.add('reveal-item');el.style.transitionDelay=(i%5)*85+'ms';revealObserver.observe(el)});
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -35px 0px'});document.querySelectorAll('.intro,.features-bar,.gallery-section,.contact-section,.footer').forEach(el=>{el.classList.add('reveal');revealObserver.observe(el)});document.querySelectorAll('.about-photo,.about-copy,.work-copy,.gallery-item,.contact-card').forEach((el,i)=>{el.classList.add('reveal-item');el.style.transitionDelay=(i%5)*85+'ms';revealObserver.observe(el)});
 </script>
 </body></html>
